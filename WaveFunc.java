@@ -1,12 +1,12 @@
 public class WaveFunc
 implements Func {
     public float valueAt(float x, float z) {
-        return Math.sin(x) + 4f;
+        return 4 * Math.sin(x);
     }
 
     public float[] normalAt(float x, float z) {
         return new float[] {
-            Math.cos(x), 0, 0
+            4 * Math.cos(x), 0, 0
         };
     }
 }
