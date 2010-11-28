@@ -88,11 +88,6 @@ implements GLEventListener {
         gl.glShadeModel(GL.GL_SMOOTH);
         //gl.glShadeModel(GL.GL_FLAT);
 
-        // BRIAN ADDED HERE
-        elevations = dem.getElevationsList();
-        normals = dem.getNormals();
-        //elevations = dem.getElevationsListDiag();
-
         //System.out.println(elevations);
 
         // Set up larger, rounded points
