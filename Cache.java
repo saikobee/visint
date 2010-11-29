@@ -9,7 +9,7 @@ public class Cache {
     //======================|
     private int zBegin = -50;
     private int zEnd   = +50;
-    //======================|
+
     private int xSize;
     private int zSize;
 
@@ -21,8 +21,8 @@ public class Cache {
     public Cache(Func f) {
         this.f = f;
 
-        xSize = Math.abs(xBegin - xEnd) + 1;
-        zSize = Math.abs(zBegin - zEnd) + 1;
+        xSize = rangeLength(xBegin, xEnd);
+        zSize = rangeLength(zBegin, zEnd);
 
         Util.ensure(xEnd > xBegin);
         Util.ensure(zEnd > zBegin);
@@ -112,5 +112,9 @@ public class Cache {
 
     int mapOutOfZeroBasedRange(int n, int begin) {
         return n + begin;
+    }
+
+    int rangeLength(int begin, int end) {
+        return Math.abs(begin - end) + 1;
     }
 }
