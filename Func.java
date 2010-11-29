@@ -1,4 +1,4 @@
-public interface class Func {
+public interface Func {
     /** Returns the y-value at a given (x, z). */
     public float valueAt(float x, float z);
 
