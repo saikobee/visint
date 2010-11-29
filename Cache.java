@@ -20,9 +20,9 @@ public class Cache {
         Util.ensure(xEnd > xBegin);
         Util.ensure(zEnd > zBegin);
 
-        values  = new int[xSize][zSize];
-        normals = new int[xSize][zSize][];
-        colors  = new int[xSize][zSize][];
+        values  = new float[xSize][zSize];
+        normals = new float[xSize][zSize][];
+        colors  = new float[xSize][zSize][];
 
         fillInValues();
 
