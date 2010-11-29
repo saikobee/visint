@@ -1,2 +1,2 @@
-Main-Class: Surf
+Main-Class: Main
 Class-Path: gluegen-rt.jar jogl.jar
