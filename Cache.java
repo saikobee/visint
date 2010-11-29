@@ -37,9 +37,9 @@ public class Cache {
                 int xIndex = mapIntoZeroBasedRange(x, xBegin);
                 int zIndex = mapIntoZeroBasedRange(z, zBegin);
 
-                thisValue  = f. valueAt(x, z);
-                thisNormal = f.normalAt(x, z);
-                thisColor  = colorAt(thisValue);
+                float   thisValue  = f. valueAt(x, z);
+                float[] thisNormal = f.normalAt(x, z);
+                float[] thisColor  = colorAt(thisValue);
 
                 values [xIndex][zIndex] = thisValue;
                 normals[xIndex][zIndex] = thisNormal;
