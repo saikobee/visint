@@ -35,7 +35,7 @@ implements KeyListener {
     private Vec3f s;
     private Vec3f u;
 
-    protected float speed       = 8.00f;
+    protected float speed       = 2.00f;
     protected float turnSpeed   = 0.03f;
     protected float tiltSpeed   = 0.01f;
 
