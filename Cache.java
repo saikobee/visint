@@ -11,20 +11,22 @@ public class Cache {
     private float[][][] normals;
     private float[][][] colors;
 
-    static {
-        Util.ensure(xEnd > xBegin);
-        Util.ensure(zEnd > zBegin);
-    }
-
     public Cache(Func f) {
         this.f = f;
 
         int xSize = Math.abs(xBegin - xEnd) + 1;
         int zSize = Math.abs(zBegin - zEnd) + 1;
 
+        Util.ensure(xEnd > xBegin);
+        Util.ensure(zEnd > zBegin);
+
         values  = new int[xSize][zSize];
         normals = new int[xSize][zSize][];
         colors  = new int[xSize][zSize][];
+
+        fillInValues();
+
+        Debug.println(Arrays.deepToString(values));
     }
 
     private void fillInValues() {
