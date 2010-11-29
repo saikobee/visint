@@ -1,11 +1,19 @@
 public class WaveFunc
 implements Func {
-    private float scale  = 16f;
-    private float period = 25f;
-    private float freq   = TWO_PI/period;
+    protected float scale  = 16f;
+    protected float period = 20f;
+    protected float freq;
 
-    private static final float PI     = (float) Math.PI;
-    private static final float TWO_PI = 2f * PI;
+    protected static final float PI     = (float) Math.PI;
+    protected static final float TWO_PI = 2f * PI;
+
+    protected void calcFreq() {
+        freq = TWO_PI/period;
+    }
+
+    public WaveFunc() {
+        calcFreq();
+    }
 
     public float valueAt(float x, float z) {
         return (float) (scale * Math.sin(freq * x));
