@@ -31,11 +31,11 @@ implements GLEventListener {
     private float pointSize = 3f;
     private float lineWidth = 1f;
 
-    private float[] ambientLighting  = {0.25f, 0.25f, 0.25f, 1f};
-    private float[] diffuseLighting  = {1.00f, 1.00f, 1.00f, 1f};
+    private float[] ambientLighting  = {0.50f, 0.50f, 0.50f, 1f};
+    private float[] diffuseLighting  = {0.50f, 0.50f, 0.50f, 1f};
     private float[] specularLighting = {1.00f, 1.00f, 1.00f, 1f};
 
-    private float[] lightPos = {100.00f, +900.00f, 100.00f, 0f};
+    private float[] lightPos = {0.00f, 50.00f, 0.00f, 0f};
 
     private float[] bgColor = {0.20f, 0.20f, 0.20f, 1.00f};
 
@@ -89,8 +89,8 @@ implements GLEventListener {
         gl.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
         // try setting this to GL_FLAT and see what happens.
-        gl.glShadeModel(GL.GL_SMOOTH);
-        //gl.glShadeModel(GL.GL_FLAT);
+        //gl.glShadeModel(GL.GL_SMOOTH);
+        gl.glShadeModel(GL.GL_FLAT);
 
         //System.out.println(elevations);
 
@@ -120,7 +120,8 @@ implements GLEventListener {
     }
 
     public void makeCache() {
-        theCache = new Cache(new WaveFunc());
+        theCache = new Cache(new WavierFunc());
+        //theCache = new Cache(new WaveFunc());
         //theCache = new Cache(new ConeFunc());
     }
 
@@ -166,8 +167,8 @@ implements GLEventListener {
     }
 
     private void changeLighting(GL gl) {
-        gl.glLightfv(gl.GL_LIGHT0, gl.GL_AMBIENT,  ambientLighting,  0);
         gl.glLightfv(gl.GL_LIGHT0, gl.GL_POSITION, lightPos,         0);
+        gl.glLightfv(gl.GL_LIGHT0, gl.GL_AMBIENT,  ambientLighting,  0);
         gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE,  diffuseLighting,  0);
         gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, specularLighting, 0);
     }
