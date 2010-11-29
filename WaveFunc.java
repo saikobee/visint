@@ -13,7 +13,7 @@ implements Func {
 
     public float[] normalAt(float x, float z) {
         return new float[] {
-            (float) ((1f/period)*(scale * Math.cos(freq * x))), 0, 0
+            (float) (freq * scale * Math.cos(freq * x)), 0, 0
         };
     }
 }
