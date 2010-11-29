@@ -4,11 +4,11 @@ import java.util.*;
 public class Cache {
     private Func f;
 
-    private int xBegin = -10;
-    private int xEnd   = +10;
+    private int xBegin = -50;
+    private int xEnd   = +50;
     //======================|
-    private int zBegin = -10;
-    private int zEnd   = +10;
+    private int zBegin = -50;
+    private int zEnd   = +50;
     //======================|
     private int xSize;
     private int zSize;

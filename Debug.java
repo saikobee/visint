@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Debug {
-    public static boolean debug = true;
+    public static boolean debug = false;
 
     private static String separator =
         "========================================";

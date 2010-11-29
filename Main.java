@@ -121,6 +121,7 @@ implements GLEventListener {
 
     public void makeCache() {
         theCache = new Cache(new WaveFunc());
+        //theCache = new Cache(new ConeFunc());
     }
 
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
