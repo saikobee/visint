@@ -1,12 +1,13 @@
+import javax.media.opengl.GL;
 import java.util.*;
 
 public class Cache {
     private Func f;
 
-    private int xBegin =   0;
+    private int xBegin = -10;
     private int xEnd   = +10;
     //======================|
-    private int zBegin =   0;
+    private int zBegin = -10;
     private int zEnd   = +10;
     //======================|
     private int xSize;
@@ -56,6 +57,32 @@ public class Cache {
                 };
             }
         }
+    }
+
+    public void drawImmediate(GL gl) {
+        for (int x=1; x < xSize; ++x) {
+            gl.glBegin(gl.GL_QUAD_STRIP);
+            for (int z=1; z < zSize; ++z) {
+                drawPoint(gl, x-0, z-0);
+                drawPoint(gl, x-1, z-0);
+                drawPoint(gl, x-0, z-1);
+                drawPoint(gl, x-1, z-1);
+            }
+            gl.glEnd();
+        }
+    }
+
+    public void drawPoint(GL gl, int x, int z) {
+        float thisX = mapOutOfZeroBasedRange(x, xBegin);
+        float thisZ = mapOutOfZeroBasedRange(z, zBegin);
+        float thisY = values[x][z];
+
+        float[] thisNormal = normals[x][z];
+        float[] thisColor  =  colors[x][z];
+
+        gl.glNormal3fv(thisNormal, 0);
+        gl.glColor3fv(thisColor, 0);
+        gl.glVertex3f(thisX, thisY, thisZ);
     }
 
     private void fillInValues() {

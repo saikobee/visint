@@ -159,6 +159,7 @@ implements GLEventListener {
         angle %= 360;
 
         //theFunc.draw(gl);
+        theCache.drawImmediate(gl);
 
         gl.glFlush();
     }
