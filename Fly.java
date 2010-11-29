@@ -36,8 +36,8 @@ implements KeyListener {
     private Vec3f u;
 
     protected float speed       = 2.00f;
-    protected float turnSpeed   = 0.03f;
-    protected float tiltSpeed   = 0.01f;
+    protected float turnSpeed   = 0.04f;
+    protected float tiltSpeed   = 0.02f;
 
     /** Calculates the camera's coordinate vectors. */
     protected void calcFSU() {
