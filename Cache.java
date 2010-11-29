@@ -48,7 +48,7 @@ public class Cache {
         }
     }
 
-    public float[] colorAt(int y) {
+    public float[] colorAt(float y) {
         return new float[] {1, 1, 1, 1};
     }
 
