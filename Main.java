@@ -37,6 +37,10 @@ implements GLEventListener {
 
     private float[] lightPos = {100.00f, +900.00f, 100.00f, 0f};
 
+    private float[] bgColor = {0.20f, 0.20f, 0.20f, 1.00f};
+
+    private Cache theCache;
+
     public static void main(String[] args) {
         Frame frame = new Frame("Function Plotter by Brian Mock");
         GLCanvas canvas = new GLCanvas();
@@ -112,6 +116,11 @@ implements GLEventListener {
         initKeyBinds();
         changeLighting(gl);
         calcFSU();
+        makeCache();
+    }
+
+    public void makeCache() {
+        theCache = new Cache(new WaveFunc());
     }
 
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
@@ -149,7 +158,7 @@ implements GLEventListener {
         angle += d_angle;
         angle %= 360;
 
-        theFunc.draw(gl);
+        //theFunc.draw(gl);
 
         gl.glFlush();
     }
