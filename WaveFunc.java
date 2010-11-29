@@ -1,11 +1,8 @@
 public class WaveFunc
-implements Func {
+extends Func {
     protected float scale  = 16f;
     protected float period = 20f;
     protected float freq;
-
-    protected static final float PI     = (float) Math.PI;
-    protected static final float TWO_PI = 2f * PI;
 
     protected void calcFreq() {
         freq = TWO_PI/period;
@@ -19,11 +16,10 @@ implements Func {
         return (float) (scale * Math.sin(freq * x));
     }
 
-    public float[] normalAt(float x, float z) {
-        return new float[] {
-            (float) (freq * scale * Math.cos(freq * x)),
-            0,
-            0
-        };
+    public float xPartial(float x) {
+        return (float) (freq * scale * Math.cos(freq * x));
+    }
+    public float zPartial(float z) {
+        return 0;
     }
 }
