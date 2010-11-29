@@ -28,7 +28,11 @@ public class Cache {
 
         fillInValues();
 
-        Debug.println(Arrays.deepToString(values));
+        Debug.printAry(values);
+        Debug.printSep();
+        Debug.printAry(normals);
+        Debug.printSep();
+        Debug.printAry(colors);
     }
 
     private void fillInValues() {
