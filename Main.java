@@ -179,7 +179,11 @@ implements GLEventListener {
         gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, specularLighting, 0);
     }
 
-    public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
+    public void displayChanged(
+        GLAutoDrawable drawable,
+        boolean modeChanged,
+        boolean deviceChanged
+    ) {
     }
 }
 
