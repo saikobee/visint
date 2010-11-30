@@ -1,4 +1,5 @@
 import javax.media.opengl.GL;
+import java.nio.*;
 import java.util.*;
 
 public class Cache {
@@ -12,6 +13,11 @@ public class Cache {
 
     private int xSize;
     private int zSize;
+
+    private IntBuffer    indexBuffer;
+    private FloatBuffer  colorBuffer;
+    private FloatBuffer normalBuffer;
+    private FloatBuffer vertexBuffer;
 
     private float[][]   values;
     private float[][][] normals;
@@ -27,13 +33,23 @@ public class Cache {
         Util.ensure(xEnd > xBegin);
         Util.ensure(zEnd > zBegin);
 
+        int xs1 = xSize - 1;
+        int zs1 = zSize - 1;
+
+        indexBuffer  =   IntBuffer.allocate(xs1 * zs1 * 4);
+        colorBuffer  = FloatBuffer.allocate(xs1 * zs1 * 4);
+        normalBuffer = FloatBuffer.allocate(xs1 * zs1 * 3);
+        vertexBuffer = FloatBuffer.allocate(xs1 * zs1 * 3);
+
         values   = new float[xSize][zSize];
+        //==================================|
         normals  = new float[xSize][zSize][];
         colors   = new float[xSize][zSize][];
         vertices = new float[xSize][zSize][];
 
         fillInValues();
         calcVertices();
+        calcBuffers();
 
         Debug.printAry(values);
         Debug.printSep();
@@ -57,6 +73,47 @@ public class Cache {
                 };
             }
         }
+    }
+
+    public void vertexArraySetup(GL gl) {
+        gl.glEnableClientState(gl.GL_COLOR_ARRAY);
+        gl.glEnableClientState(gl.GL_NORMAL_ARRAY);
+        gl.glEnableClientState(gl.GL_VERTEX_ARRAY);
+
+        gl.glVertexPointer(3, gl.GL_FLOAT, 0, vertexBuffer);
+        gl.glNormalPointer(   gl.GL_FLOAT, 0, normalBuffer);
+        gl.glColorPointer (4, gl.GL_FLOAT, 0,  colorBuffer);
+
+        //gl.glColor4f(1, 1, 1, 1);
+    }
+
+    public void calcBuffers() {
+        for (int x=1; x < xSize; ++x) {
+            for (int z=1; z < zSize; ++z) {
+                indexBuffer.put((x-0)*xSize + (z-0));
+                indexBuffer.put((x-1)*xSize + (z-0));
+                indexBuffer.put((x-0)*xSize + (z-1));
+                indexBuffer.put((x-1)*xSize + (z-1));
+            }
+        }
+
+        for (int x=0; x < xSize; ++x) {
+            for (int z=0; z < zSize; ++z) {
+                int index = x*xSize + z;
+                colorBuffer .put(colors  [x][z], index, colors  [x][z].length);
+                normalBuffer.put(normals [x][z], index, normals [x][z].length);
+                vertexBuffer.put(vertices[x][z], index, vertices[x][z].length);
+            }
+        }
+    }
+
+    public void draw(GL gl) {
+        gl.glDrawElements(
+            gl.GL_QUAD_STRIP,
+            indexBuffer.capacity(),
+            gl.GL_UNSIGNED_INT,
+            indexBuffer
+        );
     }
 
     public void drawImmediate(GL gl) {

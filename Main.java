@@ -89,8 +89,8 @@ implements GLEventListener {
         gl.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
         // try setting this to GL_FLAT and see what happens.
-        //gl.glShadeModel(GL.GL_SMOOTH);
-        gl.glShadeModel(GL.GL_FLAT);
+        gl.glShadeModel(GL.GL_SMOOTH);
+        //gl.glShadeModel(GL.GL_FLAT);
 
         //System.out.println(elevations);
 
@@ -107,6 +107,10 @@ implements GLEventListener {
         gl.glEnable(gl.GL_COLOR_MATERIAL);
         gl.glEnable(gl.GL_LIGHT0);
 
+        // Enable vertex arrays
+        gl.glEnable(gl.GL_VERTEX_ARRAY);
+
+        // Normalize surface normals
         gl.glEnable(gl.GL_NORMALIZE);
 
         // Enable alpha blending
@@ -160,8 +164,8 @@ implements GLEventListener {
         angle += d_angle;
         angle %= 360;
 
-        //theFunc.draw(gl);
-        theCache.drawImmediate(gl);
+        theCache.draw(gl);
+        //theCache.drawImmediate(gl);
 
         gl.glFlush();
     }
