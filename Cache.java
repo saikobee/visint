@@ -36,16 +36,16 @@ public class Cache {
         int xs1 = xSize - 1;
         int zs1 = zSize - 1;
 
-        indexBuffer  =   IntBuffer.allocate(xs1 * zs1 * 4);
-        colorBuffer  = FloatBuffer.allocate(xs1 * zs1 * 4);
-        normalBuffer = FloatBuffer.allocate(xs1 * zs1 * 3);
-        vertexBuffer = FloatBuffer.allocate(xs1 * zs1 * 3);
+        indexBuffer  =   IntBuffer.allocate(xs1   * zs1   * 4);
+        colorBuffer  = FloatBuffer.allocate(xSize * zSize * 4);
+        normalBuffer = FloatBuffer.allocate(xSize * zSize * 3);
+        vertexBuffer = FloatBuffer.allocate(xSize * zSize * 3);
 
         values   = new float[xSize][zSize];
         //==================================|
-        normals  = new float[xSize][zSize][];
-        colors   = new float[xSize][zSize][];
-        vertices = new float[xSize][zSize][];
+        normals  = new float[xSize][zSize][3];
+        colors   = new float[xSize][zSize][4];
+        vertices = new float[xSize][zSize][4];
 
         fillInValues();
         calcVertices();
@@ -99,12 +99,17 @@ public class Cache {
 
         for (int x=0; x < xSize; ++x) {
             for (int z=0; z < zSize; ++z) {
-                int index = x*xSize + z;
-                colorBuffer .put(colors  [x][z], index, colors  [x][z].length);
-                normalBuffer.put(normals [x][z], index, normals [x][z].length);
-                vertexBuffer.put(vertices[x][z], index, vertices[x][z].length);
+                //int index = x*xSize + z;
+                colorBuffer .put(colors  [x][z]);
+                normalBuffer.put(normals [x][z]);
+                vertexBuffer.put(vertices[x][z]);
             }
         }
+
+        indexBuffer .rewind();
+        colorBuffer .rewind();
+        normalBuffer.rewind();
+        vertexBuffer.rewind();
     }
 
     public void draw(GL gl) {
