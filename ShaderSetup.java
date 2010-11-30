@@ -10,8 +10,8 @@ import javax.media.opengl.GL;
  * author: Professor Orr
  */
 public class ShaderSetup  {
-    String frag = "shaders/toon.frag";
-    String vert = "shaders/toon.vert";
+    //String frag = "shaders/toon.frag";
+    //String vert = "shaders/toon.vert";
 
     //String frag = "shaders/dots.frag";
     //String vert = "shaders/dots.vert";
@@ -19,8 +19,8 @@ public class ShaderSetup  {
     //String frag = "shaders/hello.frag";
     //String vert = "shaders/hello.vert";
 
-    //String frag = "shaders/phong.frag";
-    //String vert = "shaders/phong.vert";
+    String frag = "shaders/phong.frag";
+    String vert = "shaders/phong.vert";
 
     int prog;
 
