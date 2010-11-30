@@ -164,8 +164,10 @@ implements GLEventListener {
         angle += d_angle;
         angle %= 360;
 
+        Debug.println("Entering theCache.draw(gl)");
         theCache.draw(gl);
-        //theCache.drawImmediate(gl);
+        Debug.println("Exiting theCache.draw(gl)");
+        theCache.drawImmediate(gl);
 
         gl.glFlush();
     }

@@ -51,13 +51,13 @@ public class Cache {
         calcVertices();
         calcBuffers();
 
-        Debug.printAry(values);
-        Debug.printSep();
-        Debug.printAry(normals);
-        Debug.printSep();
-        Debug.printAry(colors);
-        Debug.printSep();
-        Debug.printAry(vertices);
+        //Debug.printAry(values);
+        //Debug.printSep();
+        //Debug.printAry(normals);
+        //Debug.printSep();
+        //Debug.printAry(colors);
+        //Debug.printSep();
+        //Debug.printAry(vertices);
     }
 
     private void calcVertices() {
@@ -76,6 +76,7 @@ public class Cache {
     }
 
     public void vertexArraySetup(GL gl) {
+        Debug.println("Begin vertexArraySetup");
         gl.glEnableClientState(gl.GL_COLOR_ARRAY);
         gl.glEnableClientState(gl.GL_NORMAL_ARRAY);
         gl.glEnableClientState(gl.GL_VERTEX_ARRAY);
@@ -85,6 +86,15 @@ public class Cache {
         gl.glColorPointer (4, gl.GL_FLOAT, 0,  colorBuffer);
 
         //gl.glColor4f(1, 1, 1, 1);
+        Debug.println("End vertexArraySetup");
+    }
+
+    public void vertexArrayUnsetup(GL gl) {
+        Debug.println("Begin vertexArrayUnsetup");
+        gl.glDisableClientState(gl.GL_COLOR_ARRAY);
+        gl.glDisableClientState(gl.GL_NORMAL_ARRAY);
+        gl.glDisableClientState(gl.GL_VERTEX_ARRAY);
+        Debug.println("End vertexArrayUnsetup");
     }
 
     public void calcBuffers() {
@@ -113,12 +123,16 @@ public class Cache {
     }
 
     public void draw(GL gl) {
+        vertexArraySetup(gl);
+        Debug.println("Doing glDrawElements");
         gl.glDrawElements(
             gl.GL_QUAD_STRIP,
             indexBuffer.capacity(),
             gl.GL_UNSIGNED_INT,
             indexBuffer
         );
+        Debug.println("Done doing glDrawElements");
+        vertexArrayUnsetup(gl);
     }
 
     public void drawImmediate(GL gl) {
