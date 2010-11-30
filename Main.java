@@ -126,10 +126,13 @@ implements GLEventListener {
     public void makeCache() {
         theCache = new Cache(new WavierFunc());
         //theCache = new Cache(new WaveFunc());
-        //theCache = new Cache(new ConeFunc());
     }
 
-    public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
+    public void reshape(
+        GLAutoDrawable drawable,
+        int x, int y,
+        int width, int height
+    ) {
         GL gl = drawable.getGL();
         GLU glu = new GLU();
 
