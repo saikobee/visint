@@ -51,14 +51,6 @@ public class Cache {
         fillInValues();
         calcVertices();
         calcBuffers();
-
-        //Debug.printAry(values);
-        //Debug.printSep();
-        //Debug.printAry(normals);
-        //Debug.printSep();
-        //Debug.printAry(colors);
-        //Debug.printSep();
-        //Debug.printAry(vertices);
     }
 
     private void calcVertices() {
@@ -85,8 +77,6 @@ public class Cache {
         gl.glVertexPointer(3, gl.GL_FLOAT, 0, vertexBuffer);
         gl.glNormalPointer(   gl.GL_FLOAT, 0, normalBuffer);
         gl.glColorPointer (4, gl.GL_FLOAT, 0,  colorBuffer);
-
-        //gl.glColor4f(1, 1, 1, 1);
         Debug.println("End vertexArraySetup");
     }
 
@@ -110,7 +100,6 @@ public class Cache {
 
         for (int x=0; x < xSize; ++x) {
             for (int z=0; z < zSize; ++z) {
-                //int index = x*xSize + z;
                 colorBuffer .put(colors  [x][z]);
                 normalBuffer.put(normals [x][z]);
                 vertexBuffer.put(vertices[x][z]);
@@ -127,7 +116,6 @@ public class Cache {
         vertexArraySetup(gl);
         Debug.println("Doing glDrawElements");
         gl.glDrawElements(
-            //gl.GL_QUAD_STRIP,
             gl.GL_QUADS,
             indexBuffer.capacity(),
             gl.GL_UNSIGNED_INT,
