@@ -15,17 +15,17 @@ void main() {
     vec3 Eye    = normalize(E);
     vec3 Half   = normalize(Eye + Light);
     float f  = 1.0;
-    float kd = max(dot(Normal, Light), 0.);
-    //float ks = pow(max(dot(Half, Normal), 0.0),10.);
-    float ks = pow(max(dot(Half, Normal), 0.0), f * gl_FrontMaterial.shininess);
+    float kd = max(dot(Normal, Light), 0.0);
+    float ks = pow(max(dot(Half, Normal), 0.0), 10.0);
+    //float ks = pow(max(dot(Half, Normal), 0.0), f * gl_FrontMaterial.shininess);
 
     if (dot(Normal, Light) < 0.0) {
         f = 0.0;
     }
 
-    vec4 diffuse  = kd*gl_FrontLightProduct[0].diffuse;
-    vec4 specular = f*ks*gl_FrontLightProduct[0].specular;
-    vec4 ambient  = gl_FrontLightProduct[0].ambient;
+    vec4 diffuse  = kd *     gl_FrontLightProduct[0].diffuse;
+    vec4 specular = ks * f * gl_FrontLightProduct[0].specular;
+    vec4 ambient  =          gl_FrontLightProduct[0].ambient;
    
     // Set the fragment color for example to gray, alpha 1.0
     gl_FragColor = ambient + diffuse + specular;
