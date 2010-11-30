@@ -1,5 +1,3 @@
-package main;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,17 +10,18 @@ import javax.media.opengl.GL;
  * author: Professor Orr
  */
 public class ShaderSetup  {
-    //String frag = "src/shaders/toon.frag";
-    //String vert = "src/shaders/toon.vert";
+    String frag = "shaders/toon.frag";
+    String vert = "shaders/toon.vert";
 
-    //String frag = "src/shaders/dots.frag";
-    //String vert = "src/shaders/dots.vert";
+    //String frag = "shaders/dots.frag";
+    //String vert = "shaders/dots.vert";
 
-    //String frag = "src/shaders/hello.frag";
-    //String vert = "src/shaders/hello.vert";
+    //String frag = "shaders/hello.frag";
+    //String vert = "shaders/hello.vert";
 
-    String frag = "src/shaders/phong.frag";
-    String vert = "src/shaders/phong.vert";
+    //String frag = "shaders/phong.frag";
+    //String vert = "shaders/phong.vert";
+
     int prog;
 
     public ShaderSetup() {}
