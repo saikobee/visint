@@ -6,7 +6,7 @@ main( void )
 {
 	const vec3 LightPos = vec3( 0., 0., 10. );
 
-	vec3 tnorm = normalize( vec3( gl_NormalMatrix * gl_Normal ) );
+	vec3 tnorm = -normalize( vec3( gl_NormalMatrix * gl_Normal ) );
 	vec3 ECposition = vec3( gl_ModelViewMatrix * gl_Vertex );
 	LightIntensity  = dot( normalize(LightPos - ECposition), tnorm );
 	LightIntensity = abs( LightIntensity );
