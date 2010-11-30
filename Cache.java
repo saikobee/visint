@@ -6,11 +6,11 @@ import java.util.*;
 public class Cache {
     private Func f;
 
-    private int xBegin = -20;
-    private int xEnd   = +20;
+    private int xBegin = -40;
+    private int xEnd   = +40;
     //======================|
-    private int zBegin = -20;
-    private int zEnd   = +20;
+    private int zBegin = -40;
+    private int zEnd   = +40;
 
     private int xSize;
     private int zSize;
@@ -103,8 +103,8 @@ public class Cache {
             for (int z=1; z < zSize; ++z) {
                 indexBuffer.put((x-0)*xSize + (z-0));
                 indexBuffer.put((x-1)*xSize + (z-0));
-                indexBuffer.put((x-0)*xSize + (z-1));
                 indexBuffer.put((x-1)*xSize + (z-1));
+                indexBuffer.put((x-0)*xSize + (z-1));
             }
         }
 
@@ -127,7 +127,8 @@ public class Cache {
         vertexArraySetup(gl);
         Debug.println("Doing glDrawElements");
         gl.glDrawElements(
-            gl.GL_QUAD_STRIP,
+            //gl.GL_QUAD_STRIP,
+            gl.GL_QUADS,
             indexBuffer.capacity(),
             gl.GL_UNSIGNED_INT,
             indexBuffer
