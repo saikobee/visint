@@ -8,22 +8,24 @@ import java.nio.IntBuffer;
 import javax.media.opengl.GL;
 
 /**
- * PhongShader.java <BR>
- * author: 
+ * PhongShader.java
+ * author: Professor Orr
  */
-public class ShaderSetUp  {
+public class ShaderSetup  {
+    //String frag = "src/shaders/toon.frag";
+    //String vert = "src/shaders/toon.vert";
 
-//    String frag = "src\\shaders\\toon.frag";
-//    String vert = "src\\shaders\\toon.vert";
-    String frag = "src\\shaders\\dots.frag";
-    String vert = "src\\shaders\\dots.vert";
-//    String frag = "src\\shaders\\hello.frag";
-//    String vert = "src\\shaders\\hello.vert";
-    //String frag = "src\\shaders\\phong.frag";
-    //String vert = "src\\shaders\\phong.vert";
+    //String frag = "src/shaders/dots.frag";
+    //String vert = "src/shaders/dots.vert";
+
+    //String frag = "src/shaders/hello.frag";
+    //String vert = "src/shaders/hello.vert";
+
+    String frag = "src/shaders/phong.frag";
+    String vert = "src/shaders/phong.vert";
     int prog;
 
-    public ShaderSetUp() {}
+    public ShaderSetup() {}
 
     public void setFragShader(String fragName) {
         frag = fragName;
@@ -34,7 +36,7 @@ public class ShaderSetUp  {
     }
 
     // Reads in the vertex and fragment shaders, and links them to the program.   
-    public void setUpShader(GL gl) {
+    public void setupShader(GL gl) {
         int v = gl.glCreateShader(GL.GL_VERTEX_SHADER);
         int f = gl.glCreateShader(GL.GL_FRAGMENT_SHADER);
 

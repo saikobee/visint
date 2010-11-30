@@ -41,6 +41,8 @@ implements GLEventListener {
 
     private Cache theCache;
 
+    private ShaderSetup shaders = new ShaderSetup();
+
     public static void main(String[] args) {
         Frame frame = new Frame("Function Plotter by Brian Mock");
         GLCanvas canvas = new GLCanvas();
@@ -119,6 +121,7 @@ implements GLEventListener {
 
         initKeyBinds();
         changeLighting(gl);
+        shaders.setupShader(gl);
         calcFSU();
         makeCache();
     }
