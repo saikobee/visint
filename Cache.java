@@ -1,4 +1,5 @@
 import javax.media.opengl.GL;
+import com.sun.opengl.util.*;
 import java.nio.*;
 import java.util.*;
 
@@ -36,10 +37,10 @@ public class Cache {
         int xs1 = xSize - 1;
         int zs1 = zSize - 1;
 
-        indexBuffer  =   IntBuffer.allocate(xs1   * zs1   * 4);
-        colorBuffer  = FloatBuffer.allocate(xSize * zSize * 4);
-        normalBuffer = FloatBuffer.allocate(xSize * zSize * 3);
-        vertexBuffer = FloatBuffer.allocate(xSize * zSize * 3);
+        indexBuffer  = BufferUtil.newIntBuffer  (xs1   * zs1   * 4);
+        colorBuffer  = BufferUtil.newFloatBuffer(xSize * zSize * 4);
+        normalBuffer = BufferUtil.newFloatBuffer(xSize * zSize * 3);
+        vertexBuffer = BufferUtil.newFloatBuffer(xSize * zSize * 3);
 
         values   = new float[xSize][zSize];
         //==================================|
