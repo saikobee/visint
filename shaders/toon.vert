@@ -10,7 +10,7 @@ void main()
   vec3 LightPosition = vec3(gl_LightSource[0].position);
   
   // Compute the transformed normal vector
-  vec3 tnorm = normalize(gl_NormalMatrix * gl_Normal);
+  vec3 tnorm = -normalize(gl_NormalMatrix * gl_Normal);
   
   // Compute the vector from the vertex to the light source 
   vec3 lightVec = normalize( LightPosition - ecPos3 );
