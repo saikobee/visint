@@ -14,6 +14,7 @@ void main() {
     vec3 Light  = normalize(L);
     vec3 Eye    = normalize(E);
     vec3 Half   = normalize(Eye + Light);
+
     float f  = 1.0;
     float kd = max(dot(Normal, Light), 0.0);
     float ks = pow(max(dot(Half, Normal), 0.0), 10.0);
