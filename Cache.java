@@ -6,11 +6,11 @@ import java.util.*;
 public class Cache {
     private Func f;
 
-    private int xBegin = -40;
-    private int xEnd   = +40;
+    private int xBegin = -80;
+    private int xEnd   = +80;
     //======================|
-    private int zBegin = -40;
-    private int zEnd   = +40;
+    private int zBegin = -80;
+    private int zEnd   = +80;
 
     private int xSize;
     private int zSize;
