@@ -1,6 +1,8 @@
 varying float NdotL;
 
-void main() {
+// Author: Jenny Orr
+void
+main() {
   vec3 SurfaceColor = vec3(gl_FrontMaterial.diffuse);
   float k = 16.0;
 

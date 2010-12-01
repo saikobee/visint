@@ -9,7 +9,9 @@ varying vec3 E;
 varying float Y;
 
 
-void main() {
+// Author: Jenny Orr
+void
+main() {
     vec3 Normal = normalize(N);
     vec3 Light  = normalize(L);
     vec3 Eye    = normalize(E);

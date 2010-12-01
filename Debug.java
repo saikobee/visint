@@ -1,5 +1,8 @@
 import java.util.*;
 
+/**
+ * @author Brian Mock
+ */
 public class Debug {
     public static boolean debug = false;
 

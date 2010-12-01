@@ -1,3 +1,6 @@
+/**
+ * @author Brian Mock
+ */
 public abstract class Func {
     protected static final float PI     = (float) Math.PI;
     protected static final float TWO_PI = 2f * PI;

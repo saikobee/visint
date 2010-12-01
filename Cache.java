@@ -3,6 +3,9 @@ import com.sun.opengl.util.*;
 import java.nio.*;
 import java.util.*;
 
+/**
+ * @author Brian Mock
+ */
 public class Cache {
     private Func f;
 

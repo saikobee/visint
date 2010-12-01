@@ -1,3 +1,6 @@
+/**
+ * @author Brian Mock
+ */
 public class Util {
     static void ensure(boolean condition) {
         if (! condition) {

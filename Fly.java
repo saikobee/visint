@@ -15,6 +15,9 @@ import javax.swing.event.*;
 
 import gleem.linalg.*;
 
+/**
+ * @author Brian Mock
+ */
 public class Fly
 implements KeyListener {
 

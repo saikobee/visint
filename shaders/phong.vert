@@ -10,8 +10,9 @@ const float PI = 3.14159;
 const float TWO_PI = PI * 2.0;
 
 
-void main() {
-
+// Author: Jenny Orr
+void
+main() {
     gl_Position = ftransform();
   
     vec4 eyePosition = gl_ModelViewMatrix * gl_Vertex;

@@ -1,3 +1,6 @@
+/**
+ * @author Brian Mock
+ */
 public class WaveFunc
 extends Func {
     protected float scale  = 16f;

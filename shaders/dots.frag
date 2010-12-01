@@ -6,8 +6,9 @@ varying float LightIntensity;
 //uniform vec4  DotColor;
 
 
+// Author: Jenny Orr
 void
-main(void) {
+main() {
     float Diam = 0.5;
     float Tol = 0.01;
     vec4 DotColor = vec4(0, 1, 1, 1);

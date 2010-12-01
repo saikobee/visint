@@ -6,8 +6,7 @@ import java.nio.IntBuffer;
 import javax.media.opengl.GL;
 
 /**
- * PhongShader.java
- * author: Professor Orr
+ * @author Jenny Orr
  */
 public class ShaderSetup  {
     //String frag = "shaders/cel.frag";

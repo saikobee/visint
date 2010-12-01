@@ -1,9 +1,9 @@
 varying vec4 Color;
 varying float LightIntensity; 
 
+// Author: Jenny Orr
 void
-main( void )
-{
+main() {
 	const vec3 LightPos = vec3( 0., 0., 10. );
 
 	vec3 tnorm = -normalize( vec3( gl_NormalMatrix * gl_Normal ) );

@@ -1,3 +1,6 @@
+/**
+ * @author Brian Mock
+ */
 public class WavierFunc
 extends WaveFunc {
     public WavierFunc() {

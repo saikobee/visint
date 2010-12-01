@@ -13,9 +13,7 @@ import java.util.*;
 import java.io.*;
 
 /**
- * author: Brian Paul (converted to Java by Ron Cemer and Sven Goethel) <P>
- *
- * This version is equal to Brian Paul's version 1.2 1999/10/21
+ * @author Brian Mock
  */
 public class Main
 extends Fly

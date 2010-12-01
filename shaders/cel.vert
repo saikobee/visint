@@ -1,7 +1,8 @@
 varying float NdotL;
 
-void main()
-{
+// Author: Jenny Orr
+void
+main() {
   // Get the position of the vertex in eye coordinates 
   vec4 ecPos = gl_ModelViewMatrix * gl_Vertex;
   vec3 ecPos3 = (vec3(ecPos)) / ecPos.w;
