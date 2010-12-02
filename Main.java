@@ -26,8 +26,8 @@ implements GLEventListener {
 
     private float d_angle = 0.5f;
 
-    private float pointSize = 3f;
-    private float lineWidth = 1f;
+    private float pointSize = 9f;
+    private float lineWidth = 9f;
 
     private float[] ambientLighting  = {0.50f, 0.50f, 0.50f, 1f};
     private float[] diffuseLighting  = {0.50f, 0.50f, 0.50f, 1f};
@@ -37,9 +37,15 @@ implements GLEventListener {
 
     private float[] bgColor = {0.20f, 0.20f, 0.20f, 1.00f};
 
+    private float[] lineBegin = { 0,  0,  0};
+    private float[] lineEnd   = {50, 50, 50};
+    private float[] lineColor = Colors.RED;
+
     private Cache theCache;
 
     private ShaderSetup shaders = new ShaderSetup();
+
+    private Line theLine;
 
     public static void main(String[] args) {
         Frame frame = new Frame("Function Plotter by Brian Mock");
@@ -122,6 +128,11 @@ implements GLEventListener {
         shaders.setupShader(gl);
         calcFSU();
         makeCache();
+        makeLine();
+    }
+
+    public void makeLine() {
+        theLine = new Line(lineBegin, lineEnd, lineColor);
     }
 
     public void makeCache() {
@@ -170,8 +181,10 @@ implements GLEventListener {
 
         Debug.println("Entering theCache.draw(gl)");
         theCache.draw(gl);
-        Debug.println("Exiting theCache.draw(gl)");
         //theCache.drawImmediate(gl);
+        Debug.println("Exiting theCache.draw(gl)");
+
+        theLine.draw(gl);
 
         gl.glFlush();
     }

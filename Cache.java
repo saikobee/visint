@@ -71,7 +71,7 @@ public class Cache {
         }
     }
 
-    public void vertexArraySetup(GL gl) {
+    private void vertexArraySetup(GL gl) {
         Debug.println("Begin vertexArraySetup");
         gl.glEnableClientState(gl.GL_COLOR_ARRAY);
         gl.glEnableClientState(gl.GL_NORMAL_ARRAY);
@@ -83,7 +83,7 @@ public class Cache {
         Debug.println("End vertexArraySetup");
     }
 
-    public void vertexArrayUnsetup(GL gl) {
+    private void vertexArrayUnsetup(GL gl) {
         Debug.println("Begin vertexArrayUnsetup");
         gl.glDisableClientState(gl.GL_COLOR_ARRAY);
         gl.glDisableClientState(gl.GL_NORMAL_ARRAY);
