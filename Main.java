@@ -29,6 +29,12 @@ implements GLEventListener {
     private float pointSize = 20f;
     private float lineWidth = 10f;
 
+    private static int[] defaultRes    = {800, 600};
+    //private static int[] defaultRes    = {640, 480};
+    //private static int[] defaultRes    = {320, 240};
+    private static int   defaultWidth  = defaultRes[0];
+    private static int   defaultHeight = defaultRes[1];
+
     private float[] ambientLighting  = {0.50f, 0.50f, 0.50f, 1f};
     private float[] diffuseLighting  = {0.50f, 0.50f, 0.50f, 1f};
     private float[] specularLighting = {1.00f, 1.00f, 1.00f, 1f};
@@ -51,7 +57,7 @@ implements GLEventListener {
         canvas.addGLEventListener(inst);
         canvas.addKeyListener(inst);
         frame.add(canvas);
-        frame.setSize(640, 480);
+        frame.setSize(defaultWidth, defaultHeight);
         final Animator animator = new Animator(canvas);
         frame.addWindowListener(new WindowAdapter() {
             @Override
