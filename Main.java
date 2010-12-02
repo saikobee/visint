@@ -100,7 +100,7 @@ implements GLEventListener {
 
         // Set up thicker lines, smoother lines
         gl.glLineWidth(lineWidth);
-        //gl.glEnable(gl.GL_LINE_SMOOTH);
+        gl.glEnable(gl.GL_LINE_SMOOTH);
 
         // Enable lighting
         gl.glEnable(gl.GL_LIGHTING);
