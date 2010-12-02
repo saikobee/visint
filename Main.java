@@ -26,8 +26,8 @@ implements GLEventListener {
 
     private float d_angle = 0.5f;
 
-    private float pointSize = 9f;
-    private float lineWidth = 9f;
+    private float pointSize = 20f;
+    private float lineWidth = 10f;
 
     private float[] ambientLighting  = {0.50f, 0.50f, 0.50f, 1f};
     private float[] diffuseLighting  = {0.50f, 0.50f, 0.50f, 1f};
@@ -102,11 +102,11 @@ implements GLEventListener {
 
         // Set up larger, rounded points
         gl.glPointSize(pointSize);
-        gl.glEnable(gl.GL_POINT_SMOOTH);
+        //gl.glEnable(gl.GL_POINT_SMOOTH);
 
         // Set up thicker lines, smoother lines
         gl.glLineWidth(lineWidth);
-        gl.glEnable(gl.GL_LINE_SMOOTH);
+        //gl.glEnable(gl.GL_LINE_SMOOTH);
 
         // Enable lighting
         gl.glEnable(gl.GL_LIGHTING);
@@ -125,7 +125,7 @@ implements GLEventListener {
 
         initKeyBinds();
         changeLighting(gl);
-        shaders.setupShader(gl);
+        //shaders.setupShader(gl);
         calcFSU();
         makeCache();
         makeLine();

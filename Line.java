@@ -32,9 +32,8 @@ public class Line {
     private void
     vertexArraySetup(GL gl) {
         Debug.println("Begin vertexArraySetup");
-        gl.glEnableClientState(gl.GL_COLOR_ARRAY);
-        gl.glEnableClientState(gl.GL_NORMAL_ARRAY);
         gl.glEnableClientState(gl.GL_VERTEX_ARRAY);
+        gl.glEnableClientState(gl.GL_COLOR_ARRAY);
 
         gl.glVertexPointer(3, gl.GL_FLOAT, 0, vertexBuffer);
         gl.glColorPointer (4, gl.GL_FLOAT, 0,  colorBuffer);
@@ -44,14 +43,14 @@ public class Line {
     private void
     vertexArrayUnsetup(GL gl) {
         Debug.println("Begin vertexArrayUnsetup");
-        gl.glDisableClientState(gl.GL_COLOR_ARRAY);
         gl.glDisableClientState(gl.GL_VERTEX_ARRAY);
+        gl.glDisableClientState(gl.GL_COLOR_ARRAY);
         Debug.println("End vertexArrayUnsetup");
     }
 
     private void
     buildBuffers() {
-        // Both buffers are four elements long...
+        // Both buffers are 2 elements long...
         // One contains 3 numbers per vertex,
         // The other contains 4 values per color
         vertexBuffer = BufferUtil.newFloatBuffer(2 * 3);
@@ -70,17 +69,8 @@ public class Line {
     draw(GL gl) {
         vertexArraySetup(gl);
 
-        gl.glDrawArrays(
-            gl.GL_POINTS,
-            // starting index, number of elemenets
-            0, 2
-        );
-
-        gl.glDrawArrays(
-            gl.GL_LINE,
-            // starting index, number of elemenets
-            0, 2
-        );
+        gl.glDrawArrays(gl.GL_LINE_LOOP, 0, vertexBuffer.capacity());
+        gl.glDrawArrays(gl.GL_POINTS,    0, vertexBuffer.capacity());
 
         vertexArrayUnsetup(gl);
     }
