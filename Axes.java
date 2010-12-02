@@ -8,7 +8,7 @@ public class Axes {
     private Line yAxis;
     private Line zAxis;
 
-    private float length = 100;
+    private float length = 1000;
 
     private float[] xEnd = {length, 0,      0     };
     private float[] yEnd = {0,      length, 0     };

@@ -18,8 +18,8 @@ import java.io.*;
 public class Main
 extends Fly
 implements GLEventListener {
-    private float frustumBegin =    1f;
-    private float frustumEnd   = 1000f;
+    private float frustumBegin =      1f;
+    private float frustumEnd   = 100000f;
 
     private float angle = 0;
     private float color = 0;

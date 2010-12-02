@@ -70,7 +70,7 @@ public class Line {
         vertexArraySetup(gl);
 
         gl.glDrawArrays(gl.GL_LINE_LOOP, 0, vertexBuffer.capacity());
-        gl.glDrawArrays(gl.GL_POINTS,    0, vertexBuffer.capacity());
+        //gl.glDrawArrays(gl.GL_POINTS,    0, vertexBuffer.capacity());
 
         vertexArrayUnsetup(gl);
     }
