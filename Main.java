@@ -37,15 +37,11 @@ implements GLEventListener {
 
     private float[] bgColor = {0.20f, 0.20f, 0.20f, 1.00f};
 
-    private float[] lineBegin = { 0,  0,  0};
-    private float[] lineEnd   = {50, 50, 50};
-    private float[] lineColor = Colors.RED;
-
     private Cache theCache;
 
     private ShaderSetup shaders = new ShaderSetup();
 
-    private Line theLine;
+    private Axes theAxes;
 
     public static void main(String[] args) {
         Frame frame = new Frame("Function Plotter by Brian Mock");
@@ -128,11 +124,11 @@ implements GLEventListener {
         //shaders.setupShader(gl);
         calcFSU();
         makeCache();
-        makeLine();
+        makeAxes();
     }
 
-    public void makeLine() {
-        theLine = new Line(lineBegin, lineEnd, lineColor);
+    public void makeAxes() {
+        theAxes = new Axes();
     }
 
     public void makeCache() {
@@ -184,7 +180,7 @@ implements GLEventListener {
         //theCache.drawImmediate(gl);
         Debug.println("Exiting theCache.draw(gl)");
 
-        theLine.draw(gl);
+        theAxes.draw(gl);
 
         gl.glFlush();
     }
