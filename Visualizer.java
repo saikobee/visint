@@ -15,7 +15,7 @@ import java.io.*;
 /**
  * @author Brian Mock
  */
-public class Main
+public class Visualizer
 extends Fly
 implements GLEventListener {
     private float frustumBegin =      1f;
@@ -43,17 +43,19 @@ implements GLEventListener {
 
     private float[] bgColor = {0.20f, 0.20f, 0.20f, 1.00f};
 
+    private Func  theFunc;
     private Cache theCache;
 
     private ShaderSetup shaders = new ShaderSetup();
 
     private Axes theAxes;
 
-    public static void main(String[] args) {
+    public static void launchWith(Func aFunc) {
         Frame frame = new Frame("Function Plotter by Brian Mock");
         GLCanvas canvas = new GLCanvas();
 
-        Main inst = new Main();
+        Visualizer inst = new Visualizer();
+        inst.setFunc(aFunc);
         canvas.addGLEventListener(inst);
         canvas.addKeyListener(inst);
         frame.add(canvas);
@@ -127,7 +129,7 @@ implements GLEventListener {
 
         initKeyBinds();
         changeLighting(gl);
-        //shaders.setupShader(gl);
+        shaders.setupShader(gl);
         calcFSU();
         makeCache();
         makeAxes();
@@ -138,8 +140,11 @@ implements GLEventListener {
     }
 
     public void makeCache() {
-        theCache = new Cache(new WavierFunc());
-        //theCache = new Cache(new WaveFunc());
+        theCache = new Cache(theFunc);
+    }
+
+    public void setFunc(Func aFunc) {
+        theFunc = aFunc;
     }
 
     public void reshape(

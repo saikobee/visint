@@ -25,4 +25,8 @@ extends Func {
     public float zPartial(float z) {
         return 0;
     }
+
+    public String toString() {
+        return "sin(x)";
+    }
 }

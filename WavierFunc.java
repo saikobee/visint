@@ -32,4 +32,8 @@ extends WaveFunc {
 
         return fPrimeG + fGPrime;
     }
+
+    public String toString() {
+        return "sin(x) + sin(y)";
+    }
 }

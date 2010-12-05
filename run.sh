@@ -1,3 +1,4 @@
 #!/bin/bash
 . classpath.sh
-java Main
+#java Main
+java Launcher
