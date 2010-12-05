@@ -3,18 +3,38 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import javax.swing.UIManager.*;
+
 public class GUI
 extends JFrame
 implements ActionListener {
     private JButton waveButton;
     private JButton wavierButton;
 
+    private void
+    attemptNimbusStyle() {
+        try {
+            for (LookAndFeelInfo info: UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        }
+        catch (Exception e) {
+        }
+    }
+
     public
     GUI() {
+        attemptNimbusStyle();
         setTitle("Volume Integral Visualizer");
 
         waveButton   = new JButton("Wave");
         wavierButton = new JButton("Wavier");
+
+        waveButton  .setActionCommand("set_func_wave");
+        wavierButton.setActionCommand("set_func_wavier");
 
         Container cp = getContentPane();
         cp.setLayout(new FlowLayout());
@@ -43,11 +63,12 @@ implements ActionListener {
     public void
     actionPerformed(ActionEvent e) {
         Object src = e.getSource();
+        String cmd = e.getActionCommand();
 
-        if (src == waveButton) {
+        if (cmd.equals("set_func_wave")) {
             onWaveButtonClicked();
         }
-        else if (src == wavierButton) {
+        else if (cmd.equals("set_func_wavier")) {
             onWavierButtonClicked();
         }
     }
