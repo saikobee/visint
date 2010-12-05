@@ -42,9 +42,9 @@ implements KeyListener {
     protected float turnSpeed =  1.00f;
     protected float tiltSpeed =  1.00f;
 
-    private   long  thisTime;
-    private   long  lastTime;
-    protected float timePassed;
+    private   long  thisTime   = 0;
+    private   long  lastTime   = 0;
+    protected float timePassed = 0;
 
     /** Calculates the camera's coordinate vectors. */
     protected void
