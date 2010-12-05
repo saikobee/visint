@@ -49,18 +49,20 @@ implements ActionListener {
 
         waveButton          .setActionCommand("set_func_wave"   );
         wavierButton        .setActionCommand("set_func_wavier" );
+        //=======================================================|
         defaultShaderButton .setActionCommand("set_shader_none" );
         phongShaderButton   .setActionCommand("set_shader_phong");
         celShaderButton     .setActionCommand("set_shader_cel"  );
 
         Container cp = getContentPane();
         cp.setLayout(new FlowLayout());
+
+        cp.add(waveButton         );
+        cp.add(wavierButton       );
+        //=========================|
         cp.add(defaultShaderButton);
-        cp.add(phongShaderButton);
-        cp.add(celShaderButton);
-        //================|
-        cp.add(waveButton);
-        cp.add(wavierButton);
+        cp.add(phongShaderButton  );
+        cp.add(celShaderButton    );
 
         pack();
 

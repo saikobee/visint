@@ -32,6 +32,5 @@ main() {
    
     // Set the fragment color for example to gray, alpha 1.0
     gl_FragColor = ambient + diffuse + specular;
-    
 }
 
