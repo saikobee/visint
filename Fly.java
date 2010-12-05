@@ -38,9 +38,13 @@ implements KeyListener {
     private Vec3f s;
     private Vec3f u;
 
-    protected float speed       = 2.00f;
-    protected float turnSpeed   = 0.02f;
-    protected float tiltSpeed   = 0.01f;
+    protected float moveSpeed = 64.00f;
+    protected float turnSpeed =  1.00f;
+    protected float tiltSpeed =  1.00f;
+
+    private   long  thisTime;
+    private   long  lastTime;
+    protected float timePassed;
 
     /** Calculates the camera's coordinate vectors. */
     protected void
@@ -95,6 +99,17 @@ implements KeyListener {
         );
     }
 
+    /** Called to update time variables, so you know how much time
+     * has elapsed since the last frame.
+     */
+    protected void
+    updateTime() {
+        lastTime = thisTime;
+        thisTime = System.currentTimeMillis();
+        timePassed  = thisTime - lastTime;
+        timePassed /= 1000f; // convert to seconds
+    }
+
     /** Calls the key handler for all currently bound and held keys. */
     protected void
     dispatchKeyActions() {
@@ -119,50 +134,62 @@ implements KeyListener {
     private void
     actOnKey(int key) {
         if (key == binds.get("move_forward")) {
+            float speed = +moveSpeed * timePassed;
             eyeLoc.add(f.times(+speed));
         }
         else if (key == binds.get("move_backward")) {
-            eyeLoc.add(f.times(-speed));
+            float speed = -moveSpeed * timePassed;
+            eyeLoc.add(f.times(speed));
         }
         else if (key == binds.get("move_left")) {
-            eyeLoc.add(s.times(-speed));
+            float speed = -moveSpeed * timePassed;
+            eyeLoc.add(s.times(speed));
         }
         else if (key == binds.get("move_right")) {
-            eyeLoc.add(s.times(+speed));
+            float speed = +moveSpeed * timePassed;
+            eyeLoc.add(s.times(speed));
         }
         else if (key == binds.get("move_up")) {
-            eyeLoc.add(u.times(+speed));
+            float speed = +moveSpeed * timePassed;
+            eyeLoc.add(u.times(speed));
         }
         else if (key == binds.get("move_down")) {
+            float speed = +moveSpeed * timePassed;
             eyeLoc.add(u.times(-speed));
         }
         else if (key == binds.get("turn_left")) {
-            f.add(s.times(-turnSpeed));
+            float speed = -turnSpeed * timePassed;
+            f.add(s.times(speed));
             f.normalize();
             s = f.cross(u);
         }
         else if (key == binds.get("turn_right")) {
-            f.add(s.times(+turnSpeed));
+            float speed = +turnSpeed * timePassed;
+            f.add(s.times(speed));
             f.normalize();
             s = f.cross(u);
         }
         else if (key == binds.get("turn_up")) {
-            f.add(u.times(+tiltSpeed));
+            float speed = +tiltSpeed * timePassed;
+            f.add(u.times(speed));
             f.normalize();
             u = s.cross(f);
         }
         else if (key == binds.get("turn_down")) {
-            f.add(u.times(-tiltSpeed));
+            float speed = -tiltSpeed * timePassed;
+            f.add(u.times(speed));
             f.normalize();
             u = s.cross(f);
         }
         else if (key == binds.get("roll_left")) {
-            u.add(s.times(-turnSpeed));
+            float speed = -turnSpeed * timePassed;
+            u.add(s.times(speed));
             u.normalize();
             s = f.cross(u);
         }
         else if (key == binds.get("roll_right")) {
-            u.add(s.times(+turnSpeed));
+            float speed = +turnSpeed * timePassed;
+            u.add(s.times(speed));
             u.normalize();
             s = f.cross(u);
         }

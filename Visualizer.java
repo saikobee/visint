@@ -188,6 +188,7 @@ implements GLEventListener {
 
         gl.glLoadIdentity();
 
+        updateTime();
         dispatchKeyActions();
         myLookAt(gl);
 
