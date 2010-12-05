@@ -34,7 +34,8 @@ public class ShaderSetup  {
     }
 
     // Reads in the vertex and fragment shaders, and links them to the program.   
-    public void setupShader(GL gl) {
+    public void
+    setupShader(GL gl) {
         int v = gl.glCreateShader(GL.GL_VERTEX_SHADER);
         int f = gl.glCreateShader(GL.GL_FRAGMENT_SHADER);
 
@@ -85,7 +86,8 @@ public class ShaderSetup  {
     can be helpful to application developers during the development process even 
     when compiling and linking operations are successful.
      **/
-    private void checkLogInfo(GL gl, int obj) {
+    private void
+    checkLogInfo(GL gl, int obj) {
         IntBuffer iVal = IntBuffer.allocate(1);
         gl.glGetObjectParameterivARB(obj, GL.GL_OBJECT_INFO_LOG_LENGTH_ARB, iVal);
 
@@ -105,7 +107,8 @@ public class ShaderSetup  {
         System.out.println("GLSL Validation >> " + new String(infoBytes));
     }
 
-    public String fileString(String filename) throws IOException {
+    public String
+    fileString(String filename) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(filename));
         String res = "";
         String line;

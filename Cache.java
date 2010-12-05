@@ -28,7 +28,8 @@ public class Cache {
     private float[][][] colors;
     private float[][][] vertices;
 
-    public Cache(Func f) {
+    public
+    Cache(Func f) {
         this.f = f;
 
         xSize = rangeLength(xBegin, xEnd);
@@ -56,7 +57,8 @@ public class Cache {
         calcBuffers();
     }
 
-    private void calcVertices() {
+    private void
+    calcVertices() {
         for (int x=0; x < xSize; ++x) {
             for (int z=0; z < zSize; ++z) {
                 float thisX = mapOutOfZeroBasedRange(x, xBegin);
@@ -71,7 +73,8 @@ public class Cache {
         }
     }
 
-    private void vertexArraySetup(GL gl) {
+    private void
+    vertexArraySetup(GL gl) {
         gl.glEnableClientState(gl.GL_COLOR_ARRAY);
         gl.glEnableClientState(gl.GL_NORMAL_ARRAY);
         gl.glEnableClientState(gl.GL_VERTEX_ARRAY);
@@ -81,13 +84,15 @@ public class Cache {
         gl.glColorPointer (4, gl.GL_FLOAT, 0,  colorBuffer);
     }
 
-    private void vertexArrayUnsetup(GL gl) {
+    private void
+    vertexArrayUnsetup(GL gl) {
         gl.glDisableClientState(gl.GL_COLOR_ARRAY);
         gl.glDisableClientState(gl.GL_NORMAL_ARRAY);
         gl.glDisableClientState(gl.GL_VERTEX_ARRAY);
     }
 
-    public void calcBuffers() {
+    public void
+    calcBuffers() {
         for (int x=1; x < xSize; ++x) {
             for (int z=1; z < zSize; ++z) {
                 indexBuffer.put((x-0)*xSize + (z-0));
@@ -111,7 +116,8 @@ public class Cache {
         vertexBuffer.rewind();
     }
 
-    public void draw(GL gl) {
+    public void
+    draw(GL gl) {
         vertexArraySetup(gl);
         gl.glDrawElements(
             gl.GL_QUADS,
@@ -122,7 +128,8 @@ public class Cache {
         vertexArrayUnsetup(gl);
     }
 
-    public void drawImmediate(GL gl) {
+    public void
+    drawImmediate(GL gl) {
         for (int x=1; x < xSize; ++x) {
             gl.glBegin(gl.GL_QUAD_STRIP);
             for (int z=1; z < zSize; ++z) {
@@ -135,7 +142,8 @@ public class Cache {
         }
     }
 
-    public void drawPoint(GL gl, int x, int z) {
+    public void
+    drawPoint(GL gl, int x, int z) {
         float thisX = mapOutOfZeroBasedRange(x, xBegin);
         float thisZ = mapOutOfZeroBasedRange(z, zBegin);
         float thisY = values[x][z];
@@ -165,19 +173,23 @@ public class Cache {
         }
     }
 
-    public float[] colorAt(float y) {
+    public float[]
+    colorAt(float y) {
         return new float[] {1, 1, 1, 1};
     }
 
-    int mapIntoZeroBasedRange(int n, int begin) {
+    private int
+    mapIntoZeroBasedRange(int n, int begin) {
         return n - begin;
     }
 
-    int mapOutOfZeroBasedRange(int n, int begin) {
+    private int
+    mapOutOfZeroBasedRange(int n, int begin) {
         return n + begin;
     }
 
-    int rangeLength(int begin, int end) {
+    private int
+    rangeLength(int begin, int end) {
         return Math.abs(begin - end) + 1;
     }
 }

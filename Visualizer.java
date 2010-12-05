@@ -52,7 +52,8 @@ implements GLEventListener {
 
     private Axes theAxes;
 
-    public static void launchWith(Func aFunc) {
+    public static void
+    launchWith(Func aFunc) {
         JFrame frame = new JFrame("Function Plotter by Brian Mock");
         GLCanvas canvas = new GLCanvas();
 
@@ -85,7 +86,8 @@ implements GLEventListener {
         canvas.requestFocus();
     }
 
-    public void init(GLAutoDrawable drawable) {
+    public void
+    init(GLAutoDrawable drawable) {
         // Use debug pipeline
         // drawable.setGL(new DebugGL(drawable.getGL()));
 
@@ -138,19 +140,23 @@ implements GLEventListener {
         makeAxes();
     }
 
-    public void makeAxes() {
+    public void
+    makeAxes() {
         theAxes = new Axes();
     }
 
-    public void makeCache() {
+    public void
+    makeCache() {
         theCache = new Cache(theFunc);
     }
 
-    public void setFunc(Func aFunc) {
+    public void
+    setFunc(Func aFunc) {
         theFunc = aFunc;
     }
 
-    public void reshape(
+    public void
+    reshape(
         GLAutoDrawable drawable,
         int x, int y,
         int width, int height
@@ -172,7 +178,8 @@ implements GLEventListener {
         gl.glLoadIdentity();
     }
 
-    public void display(GLAutoDrawable drawable) {
+    public void
+    display(GLAutoDrawable drawable) {
         GL  gl  = drawable.getGL();
         GLU glu = new GLU();
 
@@ -197,14 +204,16 @@ implements GLEventListener {
         gl.glFlush();
     }
 
-    private void changeLighting(GL gl) {
+    private void
+    changeLighting(GL gl) {
         gl.glLightfv(gl.GL_LIGHT0, gl.GL_POSITION, lightPos,         0);
         gl.glLightfv(gl.GL_LIGHT0, gl.GL_AMBIENT,  ambientLighting,  0);
         gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE,  diffuseLighting,  0);
         gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, specularLighting, 0);
     }
 
-    public void displayChanged(
+    public void
+    displayChanged(
         GLAutoDrawable drawable,
         boolean modeChanged,
         boolean deviceChanged

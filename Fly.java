@@ -43,7 +43,8 @@ implements KeyListener {
     protected float tiltSpeed   = 0.01f;
 
     /** Calculates the camera's coordinate vectors. */
-    protected void calcFSU() {
+    protected void
+    calcFSU() {
         f = center.minus(eyeLoc);
 
         f.normalize();
@@ -54,7 +55,8 @@ implements KeyListener {
     }
 
     /** Sets up the default keybindings. */
-    protected void initKeyBinds() {
+    protected void
+    initKeyBinds() {
         binds.put("move_forward",  KeyEvent.VK_W);
         binds.put("move_backward", KeyEvent.VK_S);
         binds.put("move_left",     KeyEvent.VK_A);
@@ -73,7 +75,8 @@ implements KeyListener {
     }
 
     /** Replaces gluLookAt and takes Vec3f instead of massive numbers of floats. */
-    protected void myLookAt(GL gl) {
+    protected void
+    myLookAt(GL gl) {
         float[] mat;
 
         // Remember, this is transposed...
@@ -93,7 +96,8 @@ implements KeyListener {
     }
 
     /** Calls the key handler for all currently bound and held keys. */
-    protected void dispatchKeyActions() {
+    protected void
+    dispatchKeyActions() {
         for (Integer key: binds.values()) {
             // Key is pressed
             if (isKeyHeld(key)) {
@@ -103,7 +107,8 @@ implements KeyListener {
     }
 
     /** Returns whether or not the key specified by code is held. */
-    public boolean isKeyHeld(int code) {
+    public boolean
+    isKeyHeld(int code) {
         return keys.containsKey(code) && keys.get(code);
     }
 
@@ -111,7 +116,8 @@ implements KeyListener {
      * This method is highly redundant, but attempts to abstract the bulk
      * of it into a method have failed... :(
      */
-    private void actOnKey(int key) {
+    private void
+    actOnKey(int key) {
         if (key == binds.get("move_forward")) {
             eyeLoc.add(f.times(+speed));
         }
@@ -172,8 +178,7 @@ implements KeyListener {
     public void keyReleased(KeyEvent e) { keys.put(e.getKeyCode(), false); }
     public void keyTyped(KeyEvent e)    { }
 
-    public
-    void
+    public void
     displayChanged(
         GLAutoDrawable drawable,
         boolean modeChanged,
