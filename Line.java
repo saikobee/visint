@@ -31,21 +31,17 @@ public class Line {
 
     private void
     vertexArraySetup(GL gl) {
-        Debug.println("Begin vertexArraySetup");
         gl.glEnableClientState(gl.GL_VERTEX_ARRAY);
         gl.glEnableClientState(gl.GL_COLOR_ARRAY);
 
         gl.glVertexPointer(3, gl.GL_FLOAT, 0, vertexBuffer);
         gl.glColorPointer (4, gl.GL_FLOAT, 0,  colorBuffer);
-        Debug.println("End vertexArraySetup");
     }
 
     private void
     vertexArrayUnsetup(GL gl) {
-        Debug.println("Begin vertexArrayUnsetup");
         gl.glDisableClientState(gl.GL_VERTEX_ARRAY);
         gl.glDisableClientState(gl.GL_COLOR_ARRAY);
-        Debug.println("End vertexArrayUnsetup");
     }
 
     private void
