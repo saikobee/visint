@@ -8,9 +8,16 @@ import javax.swing.UIManager.*;
 public class GUI
 extends JFrame
 implements ActionListener {
-    private JButton waveButton;
+    private JButton   waveButton;
     private JButton wavierButton;
 
+    private JButton defaultShaderButton;
+    private JButton   phongShaderButton;
+    private JButton     celShaderButton;
+    
+    private String theShader;
+
+    // Method provided by Oracle.com Java tutorial
     private void
     attemptNimbusStyle() {
         try {
@@ -30,21 +37,38 @@ implements ActionListener {
         attemptNimbusStyle();
         setTitle("Volume Integral Visualizer");
 
-        waveButton   = new JButton("Wave");
-        wavierButton = new JButton("Wavier");
+        waveButton          = new JButton("Wave"  );
+        wavierButton        = new JButton("Wavier");
+        //=========================================|
+        defaultShaderButton = new JButton("Plain" );
+        phongShaderButton   = new JButton("Pretty");
+        celShaderButton     = new JButton("Cel"   );
 
-        waveButton  .setActionCommand("set_func_wave");
-        wavierButton.setActionCommand("set_func_wavier");
+        theShader = null;
+        disableShaderButton(defaultShaderButton);
+
+        waveButton          .setActionCommand("set_func_wave"   );
+        wavierButton        .setActionCommand("set_func_wavier" );
+        defaultShaderButton .setActionCommand("set_shader_none" );
+        phongShaderButton   .setActionCommand("set_shader_phong");
+        celShaderButton     .setActionCommand("set_shader_cel"  );
 
         Container cp = getContentPane();
         cp.setLayout(new FlowLayout());
+        cp.add(defaultShaderButton);
+        cp.add(phongShaderButton);
+        cp.add(celShaderButton);
+        //================|
         cp.add(waveButton);
         cp.add(wavierButton);
 
         pack();
 
-        waveButton  .addActionListener(this);
-        wavierButton.addActionListener(this);
+        defaultShaderButton .addActionListener(this);
+        phongShaderButton   .addActionListener(this);
+        celShaderButton     .addActionListener(this);
+        waveButton          .addActionListener(this);
+        wavierButton        .addActionListener(this);
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
@@ -71,15 +95,51 @@ implements ActionListener {
         else if (cmd.equals("set_func_wavier")) {
             onWavierButtonClicked();
         }
+        else if (cmd.equals("set_shader_none")) {
+            useShaderButton(src, null);
+        }
+        else if (cmd.equals("set_shader_phong")) {
+            useShaderButton(src, "phong");
+        }
+        else if (cmd.equals("set_shader_cel")) {
+            useShaderButton(src, "cel");
+        }
+    }
+
+    private void
+    useShaderButton(Object button, String shaderName) {
+        JButton cButton = (JButton) button;
+        Debug.println("SETTING SHADER TO " + shaderName);
+        enableShaderButtons();
+        disableShaderButton(cButton);
+        theShader = shaderName;
+    }
+
+    private void
+    enableShaderButtons() {
+        JButton[] buttons = {
+            celShaderButton,
+            phongShaderButton,
+            defaultShaderButton
+        };
+
+        for (JButton button: buttons) {
+            button.setEnabled(true);
+        }
+    }
+
+    private void
+    disableShaderButton(JButton button) {
+        button.setEnabled(false);
     }
 
     private void
     onWaveButtonClicked() {
-        Visualizer.launchWith(new WaveFunc(), "cel");
+        Visualizer.launchWith(new WaveFunc(), theShader);
     }
 
     private void
     onWavierButtonClicked() {
-        Visualizer.launchWith(new WavierFunc(), null);
+        Visualizer.launchWith(new WavierFunc(), theShader);
     }
 }

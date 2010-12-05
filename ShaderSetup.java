@@ -30,6 +30,9 @@ public class ShaderSetup  {
             setFragShader(shader);
             setVertShader(shader);
         }
+
+        Debug.println("FRAG SHADER = " + frag);
+        Debug.println("VERT SHADER = " + vert);
     }
 
     public void
