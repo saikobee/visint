@@ -28,12 +28,13 @@ implements KeyListener {
     private Vec3f center = new Vec3f(0,  50,   0);
     private Vec3f upVec  = new Vec3f(0,   1,   0);
 
-    private float rotX = 0f;
-    private float rotY = 0f;
+    private float rotX = 0;
+    private float rotY = 0;
 
-    private float posX = 0f;
-    private float posY = 0f;
+    private float posX = 0;
+    private float posY = 0;
 
+    // Forward, side (right), up vectors
     private Vec3f f;
     private Vec3f s;
     private Vec3f u;
@@ -81,10 +82,8 @@ implements KeyListener {
     /** Replaces gluLookAt and takes Vec3f instead of massive numbers of floats. */
     protected void
     myLookAt(GL gl) {
-        float[] mat;
-
         // Remember, this is transposed...
-        mat = new float[] {
+        float[] mat = {
             s.x(), u.x(), -f.x(), 0,
             s.y(), u.y(), -f.y(), 0,
             s.z(), u.z(), -f.z(), 0,
@@ -201,9 +200,9 @@ implements KeyListener {
      * Currently I have no need for any other kind of key event besides holding,
      * so this suffices.
      */
-    public void keyPressed(KeyEvent e)  { keys.put(e.getKeyCode(),  true); }
+    public void keyPressed (KeyEvent e) { keys.put(e.getKeyCode(),  true); }
     public void keyReleased(KeyEvent e) { keys.put(e.getKeyCode(), false); }
-    public void keyTyped(KeyEvent e)    { }
+    public void keyTyped   (KeyEvent e) { }
 
     public void
     displayChanged(
