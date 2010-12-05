@@ -96,7 +96,7 @@ implements GLEventListener {
         gl.glEnable(GL.GL_DEPTH_TEST);
 
         // Setup the drawing area and shading mode
-        gl.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        gl.glClearColor(0, 0, 0, 0);
 
         // try setting this to GL_FLAT and see what happens.
         gl.glShadeModel(GL.GL_SMOOTH);
