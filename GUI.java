@@ -44,6 +44,21 @@ implements ActionListener {
     actionPerformed(ActionEvent e) {
         Object src = e.getSource();
 
-        Debug.println("" + src);
+        if (src == waveButton) {
+            onWaveButtonClicked();
+        }
+        else if (src == wavierButton) {
+            onWavierButtonClicked();
+        }
+    }
+
+    private void
+    onWaveButtonClicked() {
+        Visualizer.launchWith(new WaveFunc());
+    }
+
+    private void
+    onWavierButtonClicked() {
+        Visualizer.launchWith(new WavierFunc());
     }
 }

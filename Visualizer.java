@@ -9,6 +9,8 @@ import javax.media.opengl.GLCanvas;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
 
+import javax.swing.*;
+
 import java.util.*;
 import java.io.*;
 
@@ -51,7 +53,7 @@ implements GLEventListener {
     private Axes theAxes;
 
     public static void launchWith(Func aFunc) {
-        Frame frame = new Frame("Function Plotter by Brian Mock");
+        JFrame frame = new JFrame("Function Plotter by Brian Mock");
         GLCanvas canvas = new GLCanvas();
 
         Visualizer inst = new Visualizer();
@@ -61,6 +63,7 @@ implements GLEventListener {
         frame.add(canvas);
         frame.setSize(defaultWidth, defaultHeight);
         final Animator animator = new Animator(canvas);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -70,7 +73,7 @@ implements GLEventListener {
                 new Thread(new Runnable() {
                     public void run() {
                         animator.stop();
-                        System.exit(0);
+                        //System.exit(0);
                     }
                 }).start();
             }
@@ -186,10 +189,8 @@ implements GLEventListener {
         angle += d_angle;
         angle %= 360;
 
-        Debug.println("Entering theCache.draw(gl)");
         theCache.draw(gl);
         //theCache.drawImmediate(gl);
-        Debug.println("Exiting theCache.draw(gl)");
 
         theAxes.draw(gl);
 
