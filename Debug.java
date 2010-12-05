@@ -4,7 +4,7 @@ import java.util.*;
  * @author Brian Mock
  */
 public class Debug {
-    public static boolean debug = false;
+    public static boolean debug = true;
 
     private static String separator =
         "========================================";
