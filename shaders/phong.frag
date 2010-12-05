@@ -1,6 +1,6 @@
 /*
-* fragment shader template
-*/
+ * fragment shader template
+ */
 
 varying vec3 N;
 varying vec3 L;
@@ -29,7 +29,7 @@ main() {
     vec4 diffuse  = kd *     gl_FrontLightProduct[0].diffuse;
     vec4 specular = ks * f * gl_FrontLightProduct[0].specular;
     vec4 ambient  =          gl_FrontLightProduct[0].ambient;
-   
+
     // Set the fragment color for example to gray, alpha 1.0
     vec4 light = ambient + diffuse + specular;
     gl_FragColor = light * gl_Color;

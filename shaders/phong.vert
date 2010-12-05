@@ -1,6 +1,6 @@
 /*
-* vertex shader template
-*/
+ * vertex shader template
+ */
 
 varying vec3 N;
 varying vec3 L;
@@ -14,7 +14,7 @@ const float TWO_PI = PI * 2.0;
 void
 main() {
     gl_Position = ftransform();
-  
+
     vec4 eyePosition = gl_ModelViewMatrix * gl_Vertex;
     vec4 eyeLightPos = gl_LightSource[0].position;
 
