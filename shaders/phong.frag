@@ -31,6 +31,7 @@ main() {
     vec4 ambient  =          gl_FrontLightProduct[0].ambient;
    
     // Set the fragment color for example to gray, alpha 1.0
-    gl_FragColor = ambient + diffuse + specular;
+    vec4 light = ambient + diffuse + specular;
+    gl_FragColor = light * gl_Color;
 }
 

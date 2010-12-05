@@ -20,4 +20,6 @@ main() {
   NdotL = dot(lightVec, tnorm);
 
   gl_Position = ftransform();
+
+  gl_FrontColor = gl_Color;
 }

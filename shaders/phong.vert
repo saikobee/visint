@@ -22,5 +22,5 @@ main() {
     L = eyeLightPos.xyz - eyePosition.xyz;
     E = -eyePosition.xyz;
 
-    //gl_FragColor = gl_Color;
+    gl_FrontColor = gl_Color;
 }
