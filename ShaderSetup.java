@@ -9,33 +9,46 @@ import javax.media.opengl.GL;
  * @author Jenny Orr
  */
 public class ShaderSetup  {
-    //String frag = "shaders/cel.frag";
-    //String vert = "shaders/cel.vert";
+    private String frag;
+    private String vert;
 
-    //String frag = "shaders/dots.frag";
-    //String vert = "shaders/dots.vert";
+    private String shaderDir;
 
-    //String frag = "shaders/hello.frag";
-    //String vert = "shaders/hello.vert";
+    private boolean dontUseShaders;
 
-    String frag = "shaders/phong.frag";
-    String vert = "shaders/phong.vert";
+    private int prog;
 
-    int prog;
+    public
+    ShaderSetup(String shader) {
+        if (shader == null) {
+            dontUseShaders = true;
+        }
+        else {
+            dontUseShaders = false;
+            shaderDir      = "shaders";
 
-    public ShaderSetup() {}
-
-    public void setFragShader(String fragName) {
-        frag = fragName;
+            setFragShader(shader);
+            setVertShader(shader);
+        }
     }
 
-    public void setVertShader(String vertName) {
-        vert = vertName;
+    public void
+    setFragShader(String fragName) {
+        frag = shaderDir + "/" + fragName + ".frag";
+    }
+
+    public void
+    setVertShader(String vertName) {
+        vert = shaderDir + "/" + vertName + ".vert";
     }
 
     // Reads in the vertex and fragment shaders, and links them to the program.   
     public void
     setupShader(GL gl) {
+        if (dontUseShaders) {
+            return;
+        }
+
         int v = gl.glCreateShader(GL.GL_VERTEX_SHADER);
         int f = gl.glCreateShader(GL.GL_FRAGMENT_SHADER);
 

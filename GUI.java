@@ -54,11 +54,11 @@ implements ActionListener {
 
     private void
     onWaveButtonClicked() {
-        Visualizer.launchWith(new WaveFunc());
+        Visualizer.launchWith(new WaveFunc(), "cel");
     }
 
     private void
     onWavierButtonClicked() {
-        Visualizer.launchWith(new WavierFunc());
+        Visualizer.launchWith(new WavierFunc(), null);
     }
 }

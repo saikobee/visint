@@ -48,17 +48,24 @@ implements GLEventListener {
     private Func  theFunc;
     private Cache theCache;
 
-    private ShaderSetup shaders = new ShaderSetup();
+    private ShaderSetup shaders;
 
     private Axes theAxes;
 
+    public
+    Visualizer(Func aFunc, String shaderName) {
+        setFunc(aFunc);
+        initShaderObject(shaderName);
+    }
+
     public static void
-    launchWith(Func aFunc) {
+    launchWith(Func aFunc, String shaderName) {
         JFrame frame = new JFrame("Function Plotter by Brian Mock");
         GLCanvas canvas = new GLCanvas();
 
-        Visualizer inst = new Visualizer();
-        inst.setFunc(aFunc);
+        Visualizer inst = new Visualizer(aFunc, shaderName);
+        //inst.initShaderObject(shaderName);
+        //inst.setFunc(aFunc);
         canvas.addGLEventListener(inst);
         canvas.addKeyListener(inst);
         frame.add(canvas);
@@ -74,6 +81,7 @@ implements GLEventListener {
                 new Thread(new Runnable() {
                     public void run() {
                         animator.stop();
+                        // Commented this so all the windows won't close
                         //System.exit(0);
                     }
                 }).start();
@@ -98,14 +106,14 @@ implements GLEventListener {
         gl.setSwapInterval(1);
 
         // Enable depth testing
-        gl.glEnable(GL.GL_DEPTH_TEST);
+        gl.glEnable(gl.GL_DEPTH_TEST);
 
         // Setup the drawing area and shading mode
         gl.glClearColor(0, 0, 0, 0);
 
         // try setting this to GL_FLAT and see what happens.
-        gl.glShadeModel(GL.GL_SMOOTH);
-        //gl.glShadeModel(GL.GL_FLAT);
+        gl.glShadeModel(gl.GL_SMOOTH);
+        //gl.glShadeModel(gl.GL_FLAT);
 
         //System.out.println(elevations);
 
@@ -138,6 +146,11 @@ implements GLEventListener {
         calcFSU();
         makeCache();
         makeAxes();
+    }
+
+    public void
+    initShaderObject(String shader) {
+        shaders = new ShaderSetup(shader);
     }
 
     public void
