@@ -31,9 +31,9 @@ implements GLEventListener {
     private float pointSize = 20f;
     private float lineWidth = 10f;
 
-    private static int[] defaultRes    = {800, 600};
-    //private static int[] defaultRes    = {640, 480};
-    //private static int[] defaultRes    = {320, 240};
+    //private static int[] defaultRes    = {800, 600};
+    //private static int[] defaultRes    = {800, 480};
+    private static int[] defaultRes    = {320, 240};
     private static int   defaultWidth  = defaultRes[0];
     private static int   defaultHeight = defaultRes[1];
 
