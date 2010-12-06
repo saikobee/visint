@@ -23,11 +23,11 @@ extends Func {
     }
 
     public float
-    xPartial(float x) {
+    xPartial(float x, float z) {
         return (float) (freq * scale * Math.cos(freq * x));
     }
     public float
-    zPartial(float z) {
+    zPartial(float x, float z) {
         return 0;
     }
 

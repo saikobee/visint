@@ -137,7 +137,7 @@ implements ActionListener {
 
     private void
     onWaveButtonClicked() {
-        Visualizer.launchWith(new WaveFunc(), theShader);
+        Visualizer.launchWith(new BellFunc(), theShader);
     }
 
     private void

@@ -11,17 +11,17 @@ public abstract class Func {
 
     /** Returns the partial derivative with respect to x. */
     public abstract float
-    xPartial(float x);
+    xPartial(float x, float z);
 
     /** Returns the partial derivative with respect to z. */
     public abstract float
-    zPartial(float z);
+    zPartial(float x, float z);
 
     /** Returns the normal at a given (x, z). */
     public float[]
     normalAt(float x, float z) {
         return new float[] {
-            xPartial(x), 0, zPartial(z)
+            xPartial(x, z), 0, zPartial(x, z)
         };
     }
 }

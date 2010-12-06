@@ -24,14 +24,14 @@ extends WaveFunc {
     }
 
     public float
-    xPartial(float x) {
+    xPartial(float x, float z) {
         float fPrimeG = (float) (scale * Math.sin(freq * x));
         float fGPrime = (float) (freq * scale * x * Math.cos(freq * x));
 
         return fPrimeG + fGPrime;
     }
     public float
-    zPartial(float z) {
+    zPartial(float x, float z) {
         float fPrimeG = (float) (scale * Math.sin(freq * z));
         float fGPrime = (float) (freq * scale * z * Math.cos(freq * z));
 

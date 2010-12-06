@@ -11,11 +11,11 @@ extends Func {
     }
 
     public float
-    xPartial(float x) {
+    xPartial(float x, float z) {
         return (float) (scale * 2*x);
     }
     public float
-    zPartial(float z) {
+    zPartial(float x, float z) {
         return (float) (scale * 2*z);
     }
 
