@@ -10,6 +10,7 @@ extends JFrame
 implements ActionListener {
     private JButton   waveButton;
     private JButton wavierButton;
+    private JButton saddleButton;
 
     private JButton defaultShaderButton;
     private JButton   phongShaderButton;
@@ -39,6 +40,7 @@ implements ActionListener {
 
         waveButton          = new JButton("Wave"  );
         wavierButton        = new JButton("Wavier");
+        saddleButton        = new JButton("Saddle");
         //=========================================|
         defaultShaderButton = new JButton("Plain" );
         phongShaderButton   = new JButton("Pretty");
@@ -49,6 +51,7 @@ implements ActionListener {
 
         waveButton          .setActionCommand("set_func_wave"   );
         wavierButton        .setActionCommand("set_func_wavier" );
+        saddleButton        .setActionCommand("set_func_saddle" );
         //=======================================================|
         defaultShaderButton .setActionCommand("set_shader_none" );
         phongShaderButton   .setActionCommand("set_shader_phong");
@@ -63,14 +66,17 @@ implements ActionListener {
         //=========================|
         cp.add(waveButton         );
         cp.add(wavierButton       );
+        cp.add(saddleButton       );
 
         pack();
 
         defaultShaderButton .addActionListener(this);
         phongShaderButton   .addActionListener(this);
         celShaderButton     .addActionListener(this);
+        //==========================================|
         waveButton          .addActionListener(this);
         wavierButton        .addActionListener(this);
+        saddleButton        .addActionListener(this);
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
@@ -92,10 +98,13 @@ implements ActionListener {
         String cmd = e.getActionCommand();
 
         if (cmd.equals("set_func_wave")) {
-            onWaveButtonClicked();
+            Visualizer.launchWith(new WaveFunc(), theShader);
         }
         else if (cmd.equals("set_func_wavier")) {
-            onWavierButtonClicked();
+            Visualizer.launchWith(new WavierFunc(), theShader);
+        }
+        else if (cmd.equals("set_func_saddle")) {
+            Visualizer.launchWith(new SaddleFunc(), theShader);
         }
         else if (cmd.equals("set_shader_none")) {
             useShaderButton(src, null);
@@ -133,15 +142,5 @@ implements ActionListener {
     private void
     disableShaderButton(JButton button) {
         button.setEnabled(false);
-    }
-
-    private void
-    onWaveButtonClicked() {
-        Visualizer.launchWith(new BellFunc(), theShader);
-    }
-
-    private void
-    onWavierButtonClicked() {
-        Visualizer.launchWith(new WavierFunc(), theShader);
     }
 }
