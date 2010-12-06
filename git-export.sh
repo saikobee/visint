@@ -1,2 +1,4 @@
-#!/bin/dash
-exec git daemon --base-path=/home/brian/Documents/School/Willamette/Graphics
+#!/bin/bash
+
+path="$(pwd)"
+exec git daemon --base-path="$path"
