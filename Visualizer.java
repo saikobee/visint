@@ -70,7 +70,7 @@ implements GLEventListener {
         JFrame frame = new JFrame("Function Plotter by Brian Mock");
         GLCanvas canvas = new GLCanvas();
 
-        Visualizer inst = new Visualizer(aFunc, shaderName);
+        final Visualizer inst = new Visualizer(aFunc, shaderName);
         //inst.initShaderObject(shaderName);
         //inst.setFunc(aFunc);
         canvas.addGLEventListener(inst);
@@ -85,13 +85,14 @@ implements GLEventListener {
                 // Run this on another thread than the AWT event queue to
                 // make sure the call to Animator.stop() completes before
                 // exiting
-                new Thread(new Runnable() {
+                new Thread() {
                     public void run() {
                         animator.stop();
                         // Commented this so all the windows won't close
                         //System.exit(0);
+                        inst.stopThreads();
                     }
-                }).start();
+                }.start();
             }
         });
         // Center frame
@@ -173,6 +174,11 @@ implements GLEventListener {
     public void
     setFunc(Func aFunc) {
         theFunc = aFunc;
+    }
+
+    public void
+    stopThreads() {
+        theCache.stopThreads();
     }
 
     public void

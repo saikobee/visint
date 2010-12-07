@@ -28,6 +28,14 @@ public class Cache {
     private float[][][] colors;
     private float[][][] vertices;
 
+    private ArrayList<Prismoid> prisms;
+    private Thread prismThread;
+    private long startTime;
+    private long curTime;
+    private float numSec;
+
+    private static long threadTimeout = (long) (0.1 * 1000);
+
     public
     Cache(Func f) {
         this.f = f;
@@ -46,6 +54,13 @@ public class Cache {
         normalBuffer = BufferUtil.newFloatBuffer(xSize * zSize * 3);
         vertexBuffer = BufferUtil.newFloatBuffer(xSize * zSize * 3);
 
+        prisms = new ArrayList();
+
+        startTime = System.currentTimeMillis();
+        prismThread = makePrismThread();
+        // TODO Should this be started later?
+        prismThread.start();
+
         values   = new float[xSize][zSize];
         //==================================|
         normals  = new float[xSize][zSize][3];
@@ -55,6 +70,40 @@ public class Cache {
         fillInValues();
         calcVertices();
         calcBuffers();
+    }
+
+    private Thread
+    makePrismThread() {
+        return new Thread() {
+            public void run() {
+                makePrismThreadHelper();
+            }
+        };
+    }
+
+    private void
+    makePrismThreadHelper() {
+        boolean done = false;
+        while (! done) {
+            done = Thread.interrupted();
+
+            curTime = System.currentTimeMillis();
+            numSec  = (curTime - startTime)/1000f;
+
+            Debug.println("Seconds elapsed: " + numSec);
+            try {
+                Thread.sleep(1 * 1000);
+            }
+            catch (InterruptedException e) {
+                done = true;
+                Debug.println("Thread sleep interrupted");
+            }
+        }
+    }
+
+    public void
+    stopThreads() {
+        prismThread.interrupt();
     }
 
     private void
