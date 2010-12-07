@@ -175,7 +175,7 @@ public class Cache {
 
     public float[]
     colorAt(float y) {
-        return new float[] {1, 1, 1, 1};
+        return Colors.WHITE;
     }
 
     private int
