@@ -32,8 +32,8 @@ implements GLEventListener {
     private float lineWidth = 10f;
 
     //private static int[] defaultRes    = {800, 600};
-    //private static int[] defaultRes    = {800, 480};
-    private static int[] defaultRes    = {320, 240};
+    private static int[] defaultRes    = {640, 480};
+    //private static int[] defaultRes    = {320, 240};
     private static int   defaultWidth  = defaultRes[0];
     private static int   defaultHeight = defaultRes[1];
 
@@ -43,7 +43,7 @@ implements GLEventListener {
 
     private float[] lightPos = {0.00f, 50.00f, 0.00f, 0f};
 
-    private float[] bgColor = {0.20f, 0.20f, 0.20f, 1.00f};
+    private float[] bgColor = Colors.BLACK;
 
     private Func  theFunc;
     private Cache theCache;
@@ -217,11 +217,8 @@ implements GLEventListener {
         angle += d_angle;
         angle %= 360;
 
-        //theCache.draw(gl);
-        //theCache.drawImmediate(gl);
-
-        //theAxes.draw(gl);
-
+        theCache .draw(gl);
+        theAxes  .draw(gl);
         testPrism.draw(gl);
 
         gl.glFlush();
