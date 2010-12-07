@@ -64,6 +64,9 @@ implements ActionListener {
         cp.add(phongShaderButton  );
         cp.add(celShaderButton    );
         //=========================|
+        cp.add(makeVSep()         );
+        cp.add(makeVSep()         );
+        //=========================|
         cp.add(waveButton         );
         cp.add(wavierButton       );
         cp.add(saddleButton       );
@@ -90,6 +93,11 @@ implements ActionListener {
                 gui.setVisible(true);
             }
         });
+    }
+
+    public JSeparator
+    makeVSep() {
+        return new JSeparator(JSeparator.VERTICAL);
     }
 
     public void
