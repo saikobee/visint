@@ -58,4 +58,11 @@ public class Util {
             p1[2] - p2[2]
         };
     }
+    
+    static float[]
+    zeroOutY(float[] v) {
+        return new float[] {
+            v[0], 0, v[2]
+        };
+    }
 }
