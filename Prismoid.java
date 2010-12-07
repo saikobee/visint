@@ -45,9 +45,17 @@ public class Prismoid {
 
     private Rect
     makeRect(int i, int j) {
+        /* Remember the GL quad drawing order:
+         *
+         * 2__3
+         * |  |
+         * 1--4
+         */
         return new Rect(
-            topPoints[i], topPoints[j],
-            botPoints[i], botPoints[j]
+            botPoints[i],
+            topPoints[i],
+            topPoints[j],
+            botPoints[j]
         );
     }
 
