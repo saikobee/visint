@@ -39,7 +39,7 @@ public class Rect {
         makeBuffers();
     }
 
-    public float[]
+    public float[][]
     getVertices() {
         return new float[][] {
             p1, p2, p3, p4
