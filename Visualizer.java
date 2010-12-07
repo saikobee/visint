@@ -52,6 +52,13 @@ implements GLEventListener {
 
     private Axes theAxes;
 
+    private Prismoid testPrism = new Prismoid(new Rect(
+        new float[] {0, 35, 0},
+        new float[] {7, 35, 0},
+        new float[] {7, 35, 7},
+        new float[] {0, 35, 7}
+    ));
+
     public
     Visualizer(Func aFunc, String shaderName) {
         setFunc(aFunc);
@@ -210,10 +217,12 @@ implements GLEventListener {
         angle += d_angle;
         angle %= 360;
 
-        theCache.draw(gl);
+        //theCache.draw(gl);
         //theCache.drawImmediate(gl);
 
-        theAxes.draw(gl);
+        //theAxes.draw(gl);
+
+        testPrism.draw(gl);
 
         gl.glFlush();
     }
