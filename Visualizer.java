@@ -54,9 +54,9 @@ implements GLEventListener {
 
     private Prismoid testPrism = new Prismoid(new Rect(
         new float[] {0, 35, 0},
-        new float[] {7, 35, 0},
-        new float[] {7, 35, 7},
-        new float[] {0, 35, 7}
+        new float[] {7, 30, 0},
+        new float[] {7, 25, 7},
+        new float[] {0, 20, 7}
     ));
 
     public
