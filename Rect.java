@@ -1,3 +1,8 @@
+import javax.media.opengl.GL;
+import com.sun.opengl.util.*;
+import java.nio.*;
+import java.util.*;
+
 /**
  * This class draws a rectangle based on the given points.
  * @author Brian Mock
@@ -12,6 +17,10 @@ public class Rect {
 
     private float[] color = {1, 1, 1, 1};
 
+    private FloatBuffer vertexBuffer;
+    private FloatBuffer normalBuffer;
+    private FloatBuffer  colorBuffer;
+
     public
     Rect(
         float[] p1, float[] p2,
@@ -22,10 +31,10 @@ public class Rect {
         this.p3 = p3;
         this.p4 = p4;
 
-        float[] tmp1 = displacementVector(p2, p1);
-        float[] tmp2 = displacementVector(p2, p3);
+        float[] tmp1 = Util.displacementVector(p2, p1);
+        float[] tmp2 = Util.displacementVector(p2, p3);
 
-        normal = normalize(cross(tmp1, tmp2));
+        normal = Util.normalize(Util.cross(tmp1, tmp2));
 
         makeBuffers();
     }
@@ -70,7 +79,7 @@ public class Rect {
         gl.glDrawArrays(
             gl.GL_QUADS,
             0, vertexBuffer.capacity()
-        ),
+        );
         vertexArrayUnsetup(gl);
     }
 

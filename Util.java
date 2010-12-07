@@ -32,7 +32,7 @@ public class Util {
         float y = v[1];
         float z = v[2];
 
-        return Math.sqrt(x*x + y*y + z*z);
+        return (float) Math.sqrt(x*x + y*y + z*z);
     }
 
     static float[]
