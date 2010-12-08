@@ -5,7 +5,7 @@ public class WavierFunc
 extends WaveFunc {
     public WavierFunc() {
         this.scale  =  0.50f;
-        this.period =  5.00f;
+        this.period = 10.00f;
         calcFreq();
     }
 
