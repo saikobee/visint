@@ -15,7 +15,8 @@ public class Rect {
 
     private float[] normal;
 
-    private float[] color = Colors.GREY;
+    //private float[] color = Colors.GREY;
+    private float[] color = Colors.PURPLE;
 
     private FloatBuffer vertexBuffer;
     private FloatBuffer normalBuffer;
