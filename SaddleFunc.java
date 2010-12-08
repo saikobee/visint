@@ -3,7 +3,7 @@
  */
 public class SaddleFunc
 extends Func {
-    protected float scale  = 0.01f;
+    protected float scale  = 0.05f;
 
     public float
     valueAt(float x, float z) {
