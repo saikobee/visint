@@ -9,11 +9,11 @@ import java.util.*;
 public class Cache {
     private Func f;
 
-    private int xBegin = -80;
-    private int xEnd   = +80;
+    private int xBegin = -20;
+    private int xEnd   = +20;
     //======================|
-    private int zBegin = -80;
-    private int zEnd   = +80;
+    private int zBegin = -20;
+    private int zEnd   = +20;
 
     private int xSize;
     private int zSize;
@@ -30,11 +30,8 @@ public class Cache {
 
     private ArrayList<Prismoid> prisms;
     private Thread prismThread;
-    private long startTime;
-    private long curTime;
-    private float numSec;
-
-    private static long threadTimeout = (long) (0.1 * 1000);
+    private boolean prismThreadDone;
+    private boolean prismThreadStarted;
 
     public
     Cache(Func f) {
@@ -56,10 +53,10 @@ public class Cache {
 
         prisms = new ArrayList();
 
-        startTime = System.currentTimeMillis();
+        prismThreadDone    = false;
+        prismThreadStarted = false;
+
         prismThread = makePrismThread();
-        // TODO Should this be started later?
-        prismThread.start();
 
         values   = new float[xSize][zSize];
         //==================================|
@@ -74,6 +71,7 @@ public class Cache {
 
     private Thread
     makePrismThread() {
+        prismThreadDone = false;
         return new Thread() {
             public void run() {
                 makePrismThreadHelper();
@@ -83,27 +81,37 @@ public class Cache {
 
     private void
     makePrismThreadHelper() {
-        boolean done = false;
-        while (! done) {
-            done = Thread.interrupted();
+        for (int x=1; x < xSize; ++x) {
+            for (int z=1; z < zSize; ++z) {
+                prisms.add(new Prismoid(new Rect(
+                    vertices[x-0][z-0],
+                    vertices[x-1][z-0],
+                    vertices[x-1][z-1],
+                    vertices[x-0][z-1]
+                )));
 
-            curTime = System.currentTimeMillis();
-            numSec  = (curTime - startTime)/1000f;
+                trySleep(0.1);
+                if (prismThreadDone) {
+                    return;
+                }
+            }
+        }
+    }
 
-            Debug.println("Seconds elapsed: " + numSec);
-            try {
-                Thread.sleep(1 * 1000);
-            }
-            catch (InterruptedException e) {
-                done = true;
-                Debug.println("Thread sleep interrupted");
-            }
+    private void
+    trySleep(double seconds) {
+        try {
+            Thread.sleep((long) (seconds * 1000));
+        }
+        catch (InterruptedException e) {
+            prismThreadDone = true;
+            Debug.println("Thread sleep interrupted");
         }
     }
 
     public void
     stopThreads() {
-        prismThread.interrupt();
+        prismThreadDone = true;
     }
 
     private void
@@ -167,6 +175,16 @@ public class Cache {
 
     public void
     draw(GL gl) {
+        if (! prismThreadStarted) {
+            prismThreadStarted = true;
+            prismThread.start();
+        }
+        drawFunc(gl);
+        drawPrisms(gl);
+    }
+
+    private void
+    drawFunc(GL gl) {
         vertexArraySetup(gl);
         gl.glDrawElements(
             gl.GL_QUADS,
@@ -175,6 +193,14 @@ public class Cache {
             indexBuffer
         );
         vertexArrayUnsetup(gl);
+    }
+
+    private void
+    drawPrisms(GL gl) {
+        int len = prisms.size();
+        for (int i=0; i < len; ++i) {
+            prisms.get(i).draw(gl);
+        }
     }
 
     public void
