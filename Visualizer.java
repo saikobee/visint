@@ -52,13 +52,6 @@ implements GLEventListener {
 
     private Axes theAxes;
 
-    private Prismoid testPrism = new Prismoid(new Rect(
-        new float[] {0, 35, 0},
-        new float[] {7, 30, 0},
-        new float[] {7, 25, 7},
-        new float[] {0, 20, 7}
-    ));
-
     public
     Visualizer(Func aFunc, String shaderName) {
         setFunc(aFunc);
@@ -225,7 +218,6 @@ implements GLEventListener {
 
         theCache .draw(gl);
         theAxes  .draw(gl);
-        testPrism.draw(gl);
 
         gl.glFlush();
     }
