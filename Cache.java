@@ -34,9 +34,15 @@ public class Cache {
     private boolean prismThreadDone;
     private boolean prismThreadStarted;
 
+    private float[] outlineColor;
+
+    private float thisOutlineAlpha = 0.25f;
+
     public
     Cache(Func f) {
         this.f = f;
+
+        outlineColor = Colors.withAlpha(Colors.BLACK, thisOutlineAlpha);
 
         xSize = rangeLength(xBegin, xEnd);
         zSize = rangeLength(zBegin, zEnd);
@@ -52,7 +58,7 @@ public class Cache {
         normalBuffer = BufferUtil.newFloatBuffer(xSize * zSize * 3);
         vertexBuffer = BufferUtil.newFloatBuffer(xSize * zSize * 3);
 
-        blackBuffer = Util.bigColorBuffer(Colors.BLACK, xSize * zSize * 4);
+        blackBuffer = Util.bigColorBuffer(outlineColor, xSize * zSize * 4);
 
         prisms = new ArrayList();
 

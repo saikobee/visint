@@ -28,8 +28,8 @@ implements GLEventListener {
 
     private float d_angle = 0.5f;
 
-    private float pointSize = 20f;
-    private float lineWidth = 10f;
+    private float pointSize = 10f;
+    private float lineWidth =  5f;
 
     private static int[] defaultRes    = {800, 600};
     //private static int[] defaultRes    = {640, 480};
@@ -138,8 +138,8 @@ implements GLEventListener {
         gl.glEnable(gl.GL_NORMALIZE);
 
         // Enable alpha blending
-        //gl.glEnable(gl.GL_BLEND);
-        //gl.glBlendFunc(gl.GL_SRC_ALPHA, gl.GL_ONE_MINUS_SRC_ALPHA);
+        gl.glEnable(gl.GL_BLEND);
+        gl.glBlendFunc(gl.GL_SRC_ALPHA, gl.GL_ONE_MINUS_SRC_ALPHA);
 
         initKeyBinds();
         changeLighting(gl);
