@@ -130,7 +130,6 @@ implements ActionListener {
     private void
     useShaderButton(Object button, String shaderName) {
         JButton cButton = (JButton) button;
-        Debug.println("SETTING SHADER TO " + shaderName);
         enableShaderButtons();
         disableShaderButton(cButton);
         theShader = shaderName;
