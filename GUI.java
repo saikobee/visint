@@ -65,12 +65,16 @@ implements ActionListener {
         Container cp = getContentPane();
         cp.setLayout(new FlowLayout());
 
+        cp.add(new JLabel("Shader:"));
+        //=========================|
         cp.add(defaultShaderButton);
         cp.add(phongShaderButton  );
         //cp.add(celShaderButton    );
         //=========================|
         cp.add(makeVSep()         );
         cp.add(makeVSep()         );
+        //=========================|
+        cp.add(new JLabel("Function:"));
         //=========================|
         cp.add(waveButton         );
         cp.add(wavierButton       );
