@@ -20,6 +20,7 @@ public class Cache {
 
     private IntBuffer    indexBuffer;
     private FloatBuffer  colorBuffer;
+    private FloatBuffer  blackBuffer;
     private FloatBuffer normalBuffer;
     private FloatBuffer vertexBuffer;
 
@@ -50,6 +51,8 @@ public class Cache {
         colorBuffer  = BufferUtil.newFloatBuffer(xSize * zSize * 4);
         normalBuffer = BufferUtil.newFloatBuffer(xSize * zSize * 3);
         vertexBuffer = BufferUtil.newFloatBuffer(xSize * zSize * 3);
+
+        blackBuffer = Util.bigColorBuffer(Colors.BLACK, xSize * zSize * 4);
 
         prisms = new ArrayList();
 
@@ -138,7 +141,16 @@ public class Cache {
 
         gl.glVertexPointer(3, gl.GL_FLOAT, 0, vertexBuffer);
         gl.glNormalPointer(   gl.GL_FLOAT, 0, normalBuffer);
+    }
+
+    private void
+    loadColor(GL gl) {
         gl.glColorPointer (4, gl.GL_FLOAT, 0,  colorBuffer);
+    }
+
+    private void
+    loadBlack(GL gl) {
+        gl.glColorPointer (4, gl.GL_FLOAT, 0,  blackBuffer);
     }
 
     private void
@@ -186,13 +198,22 @@ public class Cache {
     private void
     drawFunc(GL gl) {
         vertexArraySetup(gl);
+        loadColor(gl);
+        drawElements(gl, gl.GL_QUADS );
+        loadBlack(gl);
+        drawElements(gl, gl.GL_LINES );
+        drawElements(gl, gl.GL_POINTS);
+        vertexArrayUnsetup(gl);
+    }
+
+    private void
+    drawElements(GL gl, int drawType) {
         gl.glDrawElements(
-            gl.GL_QUADS,
+            drawType,
             indexBuffer.capacity(),
             gl.GL_UNSIGNED_INT,
             indexBuffer
         );
-        vertexArrayUnsetup(gl);
     }
 
     private void
@@ -201,34 +222,6 @@ public class Cache {
         for (int i=0; i < len; ++i) {
             prisms.get(i).draw(gl);
         }
-    }
-
-    public void
-    drawImmediate(GL gl) {
-        for (int x=1; x < xSize; ++x) {
-            gl.glBegin(gl.GL_QUAD_STRIP);
-            for (int z=1; z < zSize; ++z) {
-                drawPoint(gl, x-0, z-0);
-                drawPoint(gl, x-1, z-0);
-                drawPoint(gl, x-0, z-1);
-                drawPoint(gl, x-1, z-1);
-            }
-            gl.glEnd();
-        }
-    }
-
-    public void
-    drawPoint(GL gl, int x, int z) {
-        float thisX = mapOutOfZeroBasedRange(x, xBegin);
-        float thisZ = mapOutOfZeroBasedRange(z, zBegin);
-        float thisY = values[x][z];
-
-        float[] thisNormal = normals[x][z];
-        float[] thisColor  =  colors[x][z];
-
-        gl.glNormal3fv(thisNormal, 0);
-        gl.glColor3fv(thisColor, 0);
-        gl.glVertex3f(thisX, thisY, thisZ);
     }
 
     private void fillInValues() {

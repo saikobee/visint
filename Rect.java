@@ -21,6 +21,7 @@ public class Rect {
     private FloatBuffer vertexBuffer;
     private FloatBuffer normalBuffer;
     private FloatBuffer  colorBuffer;
+    private FloatBuffer  blackBuffer;
 
     public
     Rect(
@@ -66,6 +67,8 @@ public class Rect {
         colorBuffer .put(color);
         colorBuffer .put(color);
 
+        blackBuffer = Util.bigColorBuffer(Colors.BLACK, 4);
+
         vertexBuffer.rewind();
         normalBuffer.rewind();
         colorBuffer .rewind();
@@ -84,11 +87,18 @@ public class Rect {
     public void
     draw(GL gl) {
         vertexArraySetup(gl);
+        drawArrays(gl, gl.GL_QUADS );
+        drawArrays(gl, gl.GL_LINES );
+        drawArrays(gl, gl.GL_POINTS);
+        vertexArrayUnsetup(gl);
+    }
+
+    private void
+    drawArrays(GL gl, int drawType) {
         gl.glDrawArrays(
-            gl.GL_QUADS,
+            drawType,
             0, vertexBuffer.capacity()
         );
-        vertexArrayUnsetup(gl);
     }
 
     private void
