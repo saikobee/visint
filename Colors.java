@@ -20,4 +20,14 @@ public class Colors {
 
        return new float[] {rf, gf, bf, 1};
     }
+
+    public static float[]
+    withAlpha(float[] color, float alpha) {
+        float r = color[0];
+        float g = color[1];
+        float b = color[2];
+        float a = alpha;
+
+        return new float[] {r, g, b, a};
+    }
 }
