@@ -52,6 +52,8 @@ implements GLEventListener {
 
     private Axes theAxes;
 
+    private static String theTitle = "Volume Integral Visualizer by Brian Mock";
+
     public
     Visualizer(Func aFunc, String shaderName) {
         setFunc(aFunc);
@@ -60,7 +62,7 @@ implements GLEventListener {
 
     public static void
     launchWith(Func aFunc, String shaderName) {
-        JFrame frame = new JFrame("Function Plotter by Brian Mock");
+        JFrame frame = new JFrame(theTitle);
         GLCanvas canvas = new GLCanvas();
 
         final Visualizer inst = new Visualizer(aFunc, shaderName);

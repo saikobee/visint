@@ -18,6 +18,8 @@ implements ActionListener {
     
     private String theShader;
 
+    private String theTitle = "Volume Integral Visualizer by Brian Mock";
+
     // Method provided by Oracle.com Java tutorial
     private void
     attemptNimbusStyle() {
@@ -36,7 +38,7 @@ implements ActionListener {
     public
     GUI() {
         attemptNimbusStyle();
-        setTitle("Volume Integral Visualizer");
+        setTitle(theTitle);
 
         waveButton          = new JButton("Wave"  );
         wavierButton        = new JButton("Wavier");
@@ -69,7 +71,7 @@ implements ActionListener {
         //=========================|
         cp.add(waveButton         );
         cp.add(wavierButton       );
-        cp.add(saddleButton       );
+        //cp.add(saddleButton       );
 
         pack();
 
