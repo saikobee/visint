@@ -2,21 +2,21 @@
  * @author Brian Mock
  */
 public class Util {
-    static void
+    public static void
     ensure(boolean condition) {
         if (! condition) {
             throw new RuntimeException();
         }
     }
 
-    static void
+    public static void
     ensure(boolean condition, String message) {
         if (! condition) {
             throw new RuntimeException(message);
         }
     }
 
-    static float[]
+    public static float[]
     cross(float[] a, float[] b) {
         // 23-32, 31-13, 12-21
         return new float[] {
@@ -26,7 +26,7 @@ public class Util {
         };
     }
 
-    static float
+    public static float
     magnitude(float[] v) {
         float x = v[0];
         float y = v[1];
@@ -35,7 +35,7 @@ public class Util {
         return (float) Math.sqrt(x*x + y*y + z*z);
     }
 
-    static float[]
+    public static float[]
     scale(float k, float[] v) {
         return new float[] {
             k*v[0],
@@ -44,13 +44,13 @@ public class Util {
         };
     }
 
-    static float[]
+    public static float[]
     normalize(float[] v) {
         float m = magnitude(v);
         return scale(1f/m, v);
     }
 
-    static float[]
+    public static float[]
     displacementVector(float[] p1, float[] p2) {
         return new float[] {
             p1[0] - p2[0],
@@ -59,7 +59,7 @@ public class Util {
         };
     }
     
-    static float[]
+    public static float[]
     zeroOutY(float[] v) {
         return new float[] {
             v[0], 0, v[2]
