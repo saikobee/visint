@@ -216,8 +216,8 @@ implements GLEventListener {
         angle += d_angle;
         angle %= 360;
 
-        theCache .draw(gl);
         theAxes  .draw(gl);
+        theCache .draw(gl);
 
         gl.glFlush();
     }

@@ -197,8 +197,8 @@ public class Cache {
             prismThreadStarted = true;
             prismThread.start();
         }
-        drawFunc(gl);
         drawPrisms(gl);
+        drawFunc(gl);
     }
 
     private void
@@ -252,7 +252,7 @@ public class Cache {
 
     public float[]
     colorAt(float y) {
-        return Colors.WHITE;
+        return Colors.withAlpha(Colors.WHITE, 0.25f);
     }
 
     private int
