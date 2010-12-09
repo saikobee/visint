@@ -67,14 +67,14 @@ implements ActionListener {
 
         cp.add(defaultShaderButton);
         cp.add(phongShaderButton  );
-        cp.add(celShaderButton    );
+        //cp.add(celShaderButton    );
         //=========================|
         cp.add(makeVSep()         );
         cp.add(makeVSep()         );
         //=========================|
         cp.add(waveButton         );
         cp.add(wavierButton       );
-        //cp.add(saddleButton       );
+        cp.add(saddleButton       );
 
         pack();
 
