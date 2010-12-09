@@ -1,3 +1,6 @@
+/**
+ * @author Brian Mock
+ */
 public class Colors {
     public static final float[] RED    = fromRGB(0xa40000);
     public static final float[] GREEN  = fromRGB(0x4e9a06);
