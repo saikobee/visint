@@ -74,6 +74,8 @@ public class Util {
             b.put(color);
         }
 
+        b.rewind();
+
         return b;
     }
 }
