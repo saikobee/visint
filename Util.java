@@ -65,4 +65,15 @@ public class Util {
             v[0], 0, v[2]
         };
     }
+
+    public static FloatBuffer
+    bigColorBuffer(float[] color, int len) {
+        FloatBuffer b = BufferUtil.newFloatBuffer(4 * len);
+
+        for (int i=0; i < len; ++i) {
+            b.put(color);
+        }
+
+        return b;
+    }
 }
