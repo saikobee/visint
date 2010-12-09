@@ -18,6 +18,10 @@ implements ActionListener {
     private JButton defaultShaderButton;
     private JButton   phongShaderButton;
     private JButton     celShaderButton;
+
+    private WaveFunc   wave   = new WaveFunc();
+    private WavierFunc wavier = new WavierFunc();
+    private SaddleFunc saddle = new SaddleFunc();
     
     private String theShader;
 
@@ -43,9 +47,9 @@ implements ActionListener {
         attemptNimbusStyle();
         setTitle(theTitle);
 
-        waveButton          = new JButton("Wave"  );
-        wavierButton        = new JButton("Wavier");
-        saddleButton        = new JButton("Saddle");
+        waveButton          = new JButton(wave.toString());
+        wavierButton        = new JButton(wavier.toString());
+        saddleButton        = new JButton(saddle.toString());
         //=========================================|
         defaultShaderButton = new JButton("Plain" );
         phongShaderButton   = new JButton("Pretty");
@@ -65,14 +69,14 @@ implements ActionListener {
         Container cp = getContentPane();
         cp.setLayout(new FlowLayout());
 
-        cp.add(new JLabel("Shader:"));
+        //cp.add(new JLabel("Shader:"));
         //=========================|
-        cp.add(defaultShaderButton);
-        cp.add(phongShaderButton  );
+        //cp.add(defaultShaderButton);
+        //cp.add(phongShaderButton  );
         //cp.add(celShaderButton    );
         //=========================|
-        cp.add(makeVSep()         );
-        cp.add(makeVSep()         );
+        //cp.add(makeVSep()         );
+        //cp.add(makeVSep()         );
         //=========================|
         cp.add(new JLabel("Function:"));
         //=========================|
@@ -115,13 +119,13 @@ implements ActionListener {
         String cmd = e.getActionCommand();
 
         if (cmd.equals("set_func_wave")) {
-            Visualizer.launchWith(new WaveFunc(), theShader);
+            Visualizer.launchWith(wave, theShader);
         }
         else if (cmd.equals("set_func_wavier")) {
-            Visualizer.launchWith(new WavierFunc(), theShader);
+            Visualizer.launchWith(wavier, theShader);
         }
         else if (cmd.equals("set_func_saddle")) {
-            Visualizer.launchWith(new SaddleFunc(), theShader);
+            Visualizer.launchWith(saddle, theShader);
         }
         else if (cmd.equals("set_shader_none")) {
             useShaderButton(src, null);
