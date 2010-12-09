@@ -25,7 +25,7 @@ implements ActionListener {
     attemptNimbusStyle() {
         try {
             for (LookAndFeelInfo info: UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if (info.getName().equals("Nimbus")) {
                     UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
