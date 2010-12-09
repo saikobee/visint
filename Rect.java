@@ -23,11 +23,17 @@ public class Rect {
     private FloatBuffer  colorBuffer;
     private FloatBuffer  blackBuffer;
 
+    private float[] outlineColor;
+
+    private float thisOutlineAlpha = 0.25f;
+
     public
     Rect(
         float[] p1, float[] p2,
         float[] p3, float[] p4
     ) {
+        outlineColor = Colors.withAlpha(Colors.GREEN, thisOutlineAlpha);
+
         this.p1 = p1;
         this.p2 = p2;
         this.p3 = p3;
@@ -67,7 +73,7 @@ public class Rect {
         colorBuffer .put(color);
         colorBuffer .put(color);
 
-        blackBuffer = Util.bigColorBuffer(Colors.BLACK, 4);
+        blackBuffer = Util.bigColorBuffer(outlineColor, 4);
 
         vertexBuffer.rewind();
         normalBuffer.rewind();
@@ -84,12 +90,27 @@ public class Rect {
         colorBuffer  = BufferUtil.newFloatBuffer(4 * 4);
     }
 
+    private void
+    loadColor(GL gl) {
+        gl.glColorPointer (4, gl.GL_FLOAT, 0,  colorBuffer);
+    }
+
+    private void
+    loadBlack(GL gl) {
+        gl.glColorPointer (4, gl.GL_FLOAT, 0,  blackBuffer);
+    }
+
     public void
     draw(GL gl) {
         vertexArraySetup(gl);
+
+        loadColor(gl);
         drawArrays(gl, gl.GL_QUADS );
+
+        loadBlack(gl);
         drawArrays(gl, gl.GL_LINES );
         drawArrays(gl, gl.GL_POINTS);
+
         vertexArrayUnsetup(gl);
     }
 
@@ -109,7 +130,6 @@ public class Rect {
 
         gl.glVertexPointer(3, gl.GL_FLOAT, 0, vertexBuffer);
         gl.glNormalPointer(   gl.GL_FLOAT, 0, normalBuffer);
-        gl.glColorPointer (4, gl.GL_FLOAT, 0,  colorBuffer);
     }
 
     private void

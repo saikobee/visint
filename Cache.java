@@ -204,11 +204,14 @@ public class Cache {
     private void
     drawFunc(GL gl) {
         vertexArraySetup(gl);
+
         loadColor(gl);
         drawElements(gl, gl.GL_QUADS );
+
         loadBlack(gl);
         drawElements(gl, gl.GL_LINES );
         drawElements(gl, gl.GL_POINTS);
+
         vertexArrayUnsetup(gl);
     }
 
