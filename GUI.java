@@ -5,6 +5,9 @@ import javax.swing.*;
 
 import javax.swing.UIManager.*;
 
+/**
+ * @author Brian Mock
+ */
 public class GUI
 extends JFrame
 implements ActionListener {
