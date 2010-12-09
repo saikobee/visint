@@ -99,7 +99,7 @@ public class Cache {
                     vertices[x-0][z-1]
                 )));
 
-                trySleep(0.05);
+                trySleep(0.025);
                 if (prismThreadDone) {
                     return;
                 }
