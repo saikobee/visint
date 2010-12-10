@@ -25,7 +25,7 @@ implements ActionListener {
     
     private String theShader;
 
-    private String theTitle = "Volume Integral Visualizer by Brian Mock";
+    private String theTitle = "Visual Integrator by Brian Mock";
 
     // Method provided by Oracle.com Java tutorial
     private void

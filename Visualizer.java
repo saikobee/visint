@@ -52,7 +52,7 @@ implements GLEventListener {
 
     private Axes theAxes;
 
-    private static String theTitle = "Volume Integral Visualizer by Brian Mock";
+    private static String theTitle = "Visual Integrator by Brian Mock";
 
     public
     Visualizer(Func aFunc, String shaderName) {
