@@ -16,6 +16,7 @@ import javax.swing.event.*;
 import gleem.linalg.*;
 
 /**
+ * This class implements fly-through controls for OpenGL.
  * @author Brian Mock
  */
 public class Fly

@@ -1,6 +1,7 @@
 import java.util.*;
 
 /**
+ * This program controls printing debugging output (or not!).
  * @author Brian Mock
  */
 public class Debug {

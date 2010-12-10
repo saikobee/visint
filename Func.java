@@ -1,4 +1,6 @@
 /**
+ * This abstract class contains the common framework for functions
+ * of two variables.
  * @author Brian Mock
  */
 public abstract class Func {

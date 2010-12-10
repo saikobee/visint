@@ -1,4 +1,5 @@
 /**
+ * This class holds the color palette and some color functions.
  * @author Brian Mock
  */
 public class Colors {

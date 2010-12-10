@@ -1,6 +1,7 @@
 import javax.media.opengl.GL;
 
 /**
+ * This class draws the x, y, and z axes.
  * @author Brian Mock
  */
 public class Axes {

@@ -4,6 +4,7 @@ import java.nio.*;
 import java.util.*;
 
 /**
+ * This class controls drawing a single line.
  * @author Brian Mock
  */
 public class Line {

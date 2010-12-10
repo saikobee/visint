@@ -4,6 +4,8 @@ import java.nio.*;
 import java.util.*;
 
 /**
+ * This class caches the function being drawn.
+ * It also manages the thread drawing prismoids.
  * @author Brian Mock
  */
 public class Cache {
@@ -151,12 +153,12 @@ public class Cache {
 
     private void
     loadColor(GL gl) {
-        gl.glColorPointer (4, gl.GL_FLOAT, 0,  colorBuffer);
+        gl.glColorPointer(4, gl.GL_FLOAT, 0,  colorBuffer);
     }
 
     private void
     loadBlack(GL gl) {
-        gl.glColorPointer (4, gl.GL_FLOAT, 0,  blackBuffer);
+        gl.glColorPointer(4, gl.GL_FLOAT, 0,  blackBuffer);
     }
 
     private void

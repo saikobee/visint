@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.UIManager.*;
 
 /**
+ * This class controls the GUI launcher.
  * @author Brian Mock
  */
 public class GUI
