@@ -1,4 +1,5 @@
 /**
+ * This function looks like a standard sine wave.
  * @author Brian Mock
  */
 public class WaveFunc

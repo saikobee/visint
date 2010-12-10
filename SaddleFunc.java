@@ -1,4 +1,5 @@
 /**
+ * This function looks like a saddle.
  * @author Brian Mock
  */
 public class SaddleFunc

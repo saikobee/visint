@@ -78,6 +78,7 @@ public class Rect {
         colorBuffer .rewind();
     }
 
+    /** Makes the color buffer based on function y-values. */
     private void
     makeColBuffer() {
         float[][] ps = {p1, p2, p3, p4};
@@ -104,12 +105,12 @@ public class Rect {
 
     private void
     loadColor(GL gl) {
-        gl.glColorPointer (4, gl.GL_FLOAT, 0,  colorBuffer);
+        gl.glColorPointer(4, gl.GL_FLOAT, 0,  colorBuffer);
     }
 
     private void
     loadBlack(GL gl) {
-        gl.glColorPointer (4, gl.GL_FLOAT, 0,  blackBuffer);
+        gl.glColorPointer(4, gl.GL_FLOAT, 0,  blackBuffer);
     }
 
     public void

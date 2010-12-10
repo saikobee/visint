@@ -15,6 +15,8 @@ import java.util.*;
 import java.io.*;
 
 /**
+ * This class is in charge of making a new OpenGL window, closing it,
+ * and asking to draw the pieces of the visualization.
  * @author Brian Mock
  */
 public class Visualizer

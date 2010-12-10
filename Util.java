@@ -2,6 +2,8 @@ import com.sun.opengl.util.*;
 import java.nio.*;
 
 /**
+ * This is a collection of utility methods that don't really
+ * belong in any other class.
  * @author Brian Mock
  */
 public class Util {

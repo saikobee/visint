@@ -1,4 +1,5 @@
 /**
+ * This class is a sin(x) + sin(y) funky raised surface function.
  * @author Brian Mock
  */
 public class WavierFunc

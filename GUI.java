@@ -109,11 +109,13 @@ implements ActionListener {
         });
     }
 
+    /** Make a vertical separator. */
     public JSeparator
     makeVSep() {
         return new JSeparator(JSeparator.VERTICAL);
     }
 
+    /** Handle actions being performed. */
     public void
     actionPerformed(ActionEvent e) {
         Object src = e.getSource();
