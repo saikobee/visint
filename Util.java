@@ -81,4 +81,22 @@ public class Util {
 
         return b;
     }
+
+    public static boolean
+    allYPositive(float[] a, float[] b, float[] c, float[] d) {
+        return 
+            (a[1] > 0) &&
+            (b[1] > 0) &&
+            (c[1] > 0) &&
+            (d[1] > 0);
+    }
+
+    public static boolean
+    anyYPositive(float[] a, float[] b, float[] c, float[] d) {
+        return 
+            (a[1] > 0) ||
+            (b[1] > 0) ||
+            (c[1] > 0) ||
+            (d[1] > 0);
+    }
 }

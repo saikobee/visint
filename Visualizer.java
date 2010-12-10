@@ -28,8 +28,8 @@ implements GLEventListener {
 
     private float d_angle = 0.5f;
 
-    private float pointSize =  4f;
-    private float lineWidth =  2f;
+    private float pointSize =  5f;
+    private float lineWidth =  3f;
 
     private static int[] defaultRes    = {800, 600};
     //private static int[] defaultRes    = {640, 480};

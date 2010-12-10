@@ -17,6 +17,7 @@ public class Rect {
 
     //private float[] color = Colors.GREY;
     private float[] color = Colors.PURPLE;
+    private float[] negCl = Colors.YELLOW;
 
     private FloatBuffer vertexBuffer;
     private FloatBuffer normalBuffer;
@@ -25,14 +26,19 @@ public class Rect {
 
     private float[] outlineColor;
 
-    private float thisOutlineAlpha = 0.25f;
+    private float thisOutlineAlpha = 0.75f;
+
+    private boolean positive;
 
     public
     Rect(
         float[] p1, float[] p2,
-        float[] p3, float[] p4
+        float[] p3, float[] p4,
+        boolean positive
     ) {
         outlineColor = Colors.withAlpha(Colors.GREEN, thisOutlineAlpha);
+
+        this.positive = positive;
 
         this.p1 = p1;
         this.p2 = p2;
@@ -45,6 +51,11 @@ public class Rect {
         normal = Util.normalize(Util.cross(tmp1, tmp2));
 
         makeBuffers();
+    }
+
+    public boolean
+    getPositive() {
+        return positive;
     }
 
     public float[][]
@@ -68,10 +79,12 @@ public class Rect {
         normalBuffer.put(normal);
         normalBuffer.put(normal);
 
-        colorBuffer .put(color);
-        colorBuffer .put(color);
-        colorBuffer .put(color);
-        colorBuffer .put(color);
+        if (positive) {
+            colorBuffer = Util.bigColorBuffer(color, 4);
+        }
+        else {
+            colorBuffer = Util.bigColorBuffer(negCl,  4);
+        }
 
         blackBuffer = Util.bigColorBuffer(outlineColor, 4);
 
@@ -87,7 +100,6 @@ public class Rect {
         // 4 colors with 4 components each
         vertexBuffer = BufferUtil.newFloatBuffer(4 * 3);
         normalBuffer = BufferUtil.newFloatBuffer(4 * 3);
-        colorBuffer  = BufferUtil.newFloatBuffer(4 * 4);
     }
 
     private void

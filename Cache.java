@@ -92,11 +92,16 @@ public class Cache {
     makePrismThreadHelper() {
         for (int x=1; x < xSize; ++x) {
             for (int z=1; z < zSize; ++z) {
+                float[] a = vertices[x-0][z-0];
+                float[] b = vertices[x-1][z-0];
+                float[] c = vertices[x-1][z-1];
+                float[] d = vertices[x-0][z-1];
+
+                //boolean positive = Util.allYPositive(a, b, c, d);
+                boolean positive = Util.anyYPositive(a, b, c, d);
+
                 prisms.add(new Prismoid(new Rect(
-                    vertices[x-0][z-0],
-                    vertices[x-1][z-0],
-                    vertices[x-1][z-1],
-                    vertices[x-0][z-1]
+                    a, b, c, d, positive
                 )));
 
                 trySleep(0.025);
@@ -252,7 +257,7 @@ public class Cache {
 
     public float[]
     colorAt(float y) {
-        return Colors.withAlpha(Colors.WHITE, 0.25f);
+        return Colors.withAlpha(Colors.WHITE, 0.75f);
     }
 
     private int

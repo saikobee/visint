@@ -21,21 +21,30 @@ public class Prismoid {
     private float[][] topPoints;
     private float[][] botPoints;
 
+    private boolean positive;
+
     public
     Prismoid(Rect top) {
         this.top = top;
 
         topPoints = top.getVertices();
+        positive  = top.getPositive();
 
         // The bottom is merely the top dropped into the xz plane
-        bottom = new Rect(
+
+        botPoints = new float[][] {
             Util.zeroOutY(topPoints[0]),
             Util.zeroOutY(topPoints[1]),
             Util.zeroOutY(topPoints[2]),
             Util.zeroOutY(topPoints[3])
-        );
+        };
 
-        botPoints = bottom.getVertices();
+        float[] a = botPoints[0];
+        float[] b = botPoints[1];
+        float[] c = botPoints[2];
+        float[] d = botPoints[3];
+
+        bottom = new Rect(a, b, c, d, positive);
 
         side1 = makeRect(0, 1);
         side2 = makeRect(1, 2);
@@ -51,12 +60,15 @@ public class Prismoid {
          * |  |
          * 1--4
          */
-        return new Rect(
-            botPoints[i],
-            topPoints[i],
-            topPoints[j],
-            botPoints[j]
-        );
+
+        float[] a = botPoints[i];
+        float[] b = topPoints[i];
+        float[] c = topPoints[j];
+        float[] d = botPoints[j];
+
+        //boolean positive = Util.allYPositive(a, b, c, d);
+
+        return new Rect(a, b, c, d, positive);
     }
 
     public void
