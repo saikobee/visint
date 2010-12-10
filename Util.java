@@ -99,4 +99,14 @@ public class Util {
             (c[1] > 0) ||
             (d[1] > 0);
     }
+
+    public static boolean
+    mostlyYPositive(float[] a, float[] b, float[] c, float[] d) {
+        int x = (a[1] > 0) ? 1 : 0;
+        int y = (b[1] > 0) ? 1 : 0;
+        int z = (c[1] > 0) ? 1 : 0;
+        int q = (d[1] > 0) ? 1 : 0;
+
+        return (x + y + z + q) >= 2;
+    }
 }
