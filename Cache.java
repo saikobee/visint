@@ -97,13 +97,7 @@ public class Cache {
                 float[] c = vertices[x-1][z-1];
                 float[] d = vertices[x-0][z-1];
 
-                //boolean positive = Util.allYPositive(a, b, c, d);
-                //boolean positive = Util.anyYPositive(a, b, c, d);
-                boolean positive = Util.mostlyYPositive(a, b, c, d);
-
-                prisms.add(new Prismoid(new Rect(
-                    a, b, c, d, positive
-                )));
+                prisms.add(new Prismoid(new Rect(a, b, c, d)));
 
                 trySleep(0.025);
                 if (prismThreadDone) {

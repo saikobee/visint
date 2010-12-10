@@ -16,8 +16,8 @@ public class Rect {
     private float[] normal;
 
     //private float[] color = Colors.GREY;
-    private float[] color = Colors.PURPLE;
-    private float[] negCl = Colors.YELLOW;
+    private float[] color = Colors.YELLOW;
+    private float[] zeroC = Colors.PURPLE;
 
     private FloatBuffer vertexBuffer;
     private FloatBuffer normalBuffer;
@@ -28,17 +28,12 @@ public class Rect {
 
     private float thisOutlineAlpha = 0.75f;
 
-    private boolean positive;
-
     public
     Rect(
         float[] p1, float[] p2,
-        float[] p3, float[] p4,
-        boolean positive
+        float[] p3, float[] p4
     ) {
         outlineColor = Colors.withAlpha(Colors.GREEN, thisOutlineAlpha);
-
-        this.positive = positive;
 
         this.p1 = p1;
         this.p2 = p2;
@@ -51,11 +46,6 @@ public class Rect {
         normal = Util.normalize(Util.cross(tmp1, tmp2));
 
         makeBuffers();
-    }
-
-    public boolean
-    getPositive() {
-        return positive;
     }
 
     public float[][]
@@ -79,12 +69,7 @@ public class Rect {
         normalBuffer.put(normal);
         normalBuffer.put(normal);
 
-        if (positive) {
-            colorBuffer = Util.bigColorBuffer(color, 4);
-        }
-        else {
-            colorBuffer = Util.bigColorBuffer(negCl,  4);
-        }
+        makeColBuffer();
 
         blackBuffer = Util.bigColorBuffer(outlineColor, 4);
 
@@ -94,12 +79,27 @@ public class Rect {
     }
 
     private void
+    makeColBuffer() {
+        float[][] ps = {p1, p2, p3, p4};
+
+        for (float[] p: ps) {
+            if (p[1] != 0) {
+                colorBuffer.put(color);
+            }
+            else {
+                colorBuffer.put(zeroC);
+            }
+        }
+    }
+
+    private void
     allocBuffers() {
         // 4 points in 3-space,
         // 4 normals in 3-space,
         // 4 colors with 4 components each
         vertexBuffer = BufferUtil.newFloatBuffer(4 * 3);
         normalBuffer = BufferUtil.newFloatBuffer(4 * 3);
+        colorBuffer  = BufferUtil.newFloatBuffer(4 * 4);
     }
 
     private void
