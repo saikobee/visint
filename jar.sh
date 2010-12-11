@@ -9,6 +9,7 @@ cp "${libs[@]}" .
 
 jar -cmf \
     manifest.txt \
-    brian-mock-graphics-lighting.jar \
-    *.java \
+    brian-mock-integrator.jar \
+    gleem \
+    shaders \
     *.class

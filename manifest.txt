@@ -1,2 +1,2 @@
-Main-Class: Main
+Main-Class: GUI
 Class-Path: gluegen-rt.jar jogl.jar
