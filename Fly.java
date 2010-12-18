@@ -81,7 +81,7 @@ implements KeyListener {
     }
 
     /** Replaces gluLookAt and takes Vec3f instead of massive numbers of floats. */
-    protected void
+    public void
     myLookAt(GL gl) {
         // Remember, this is transposed...
         float[] mat = {

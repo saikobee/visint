@@ -20,7 +20,6 @@ import java.io.*;
  * @author Brian Mock
  */
 public class Visualizer
-extends Fly
 implements GLEventListener {
     private float frustumBegin =      1f;
     private float frustumEnd   = 100000f;
@@ -54,7 +53,12 @@ implements GLEventListener {
 
     private Axes theAxes;
 
+    public GLCanvas canvas;
+
     private static String theTitle = "Visual Integrator by Brian Mock";
+
+    private MouseControls mouseControls = new MouseControls();
+    private Fly fly = new Fly();
 
     public
     Visualizer(Func aFunc, String shaderName) {
@@ -68,10 +72,11 @@ implements GLEventListener {
         GLCanvas canvas = new GLCanvas();
 
         final Visualizer inst = new Visualizer(aFunc, shaderName);
+        inst.canvas = canvas;
         //inst.initShaderObject(shaderName);
         //inst.setFunc(aFunc);
         canvas.addGLEventListener(inst);
-        canvas.addKeyListener(inst);
+
         frame.add(canvas);
         frame.setSize(defaultWidth, defaultHeight);
         final Animator animator = new Animator(canvas);
@@ -106,6 +111,14 @@ implements GLEventListener {
 
         GL gl = drawable.getGL();
         //System.err.println("INIT GL IS: " + gl.getClass().getName());
+
+        // Keyboard controls
+        canvas.addKeyListener(fly);
+
+        // Mouse controls
+        canvas.addMouseListener(mouseControls);
+        canvas.addMouseWheelListener(mouseControls);
+        canvas.addMouseMotionListener(mouseControls);
 
         // Enable VSync
         gl.setSwapInterval(1);
@@ -145,10 +158,10 @@ implements GLEventListener {
         gl.glEnable(gl.GL_BLEND);
         gl.glBlendFunc(gl.GL_SRC_ALPHA, gl.GL_ONE_MINUS_SRC_ALPHA);
 
-        initKeyBinds();
+        fly.initKeyBinds();
         changeLighting(gl);
         shaders.setupShader(gl);
-        calcFSU();
+        fly.calcFSU();
         makeCache();
         makeAxes();
     }
@@ -211,9 +224,12 @@ implements GLEventListener {
 
         gl.glLoadIdentity();
 
-        updateTime();
-        dispatchKeyActions();
-        myLookAt(gl);
+        fly.updateTime();
+        fly.dispatchKeyActions();
+        mouseControls.dolly(gl);
+        mouseControls.track(gl);
+        fly.myLookAt(gl);
+        mouseControls.rotate(gl);
 
         gl.glClearColor(bgColor[0], bgColor[1], bgColor[2], bgColor[3]);
 
