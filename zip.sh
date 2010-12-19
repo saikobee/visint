@@ -1,8 +1,5 @@
 #!/bin/sh
-zip -r brian-mock-integrator.zip \
-    *.java     \
-    gleem       \
-    shaders      \
+zip -r "visint-1.0.zip" \
     README.txt    \
     user-guide.pdf \
     brian-mock-integrator.jar
