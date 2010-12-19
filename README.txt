@@ -11,7 +11,7 @@
 
 == Turning Controls ==
 
-- Turn left, right, loop up, down
+- Turn left, right, look up, down
 
    I
   JKL
