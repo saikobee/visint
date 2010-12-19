@@ -13,8 +13,6 @@ import java.util.*;
 import java.awt.event.*;
 import javax.swing.event.*;
 
-import gleem.linalg.*;
-
 /**
  * This class implements fly-through controls for OpenGL.
  * @author Brian Mock
@@ -25,9 +23,9 @@ implements KeyListener {
     private Map<Integer, Boolean> keys  = new HashMap<Integer, Boolean>();
     private Map<String,  Integer> binds = new HashMap<String,  Integer>();
 
-    private Vec3f eyeLoc = new Vec3f(0,  50, 200);
-    private Vec3f center = new Vec3f(0,  50,   0);
-    private Vec3f upVec  = new Vec3f(0,   1,   0);
+    private float[] eyeLoc = {0,  50, 200};
+    private float[] center = {0,  50,   0};
+    private float[] upVec  = {0,   1,   0};
 
     private float rotX = 0;
     private float rotY = 0;
@@ -36,9 +34,9 @@ implements KeyListener {
     private float posY = 0;
 
     // Forward, side (right), up vectors
-    private Vec3f f;
-    private Vec3f s;
-    private Vec3f u;
+    private float[] f;
+    private float[] s;
+    private float[] u;
 
     protected float moveSpeed = 64.00f;
     protected float turnSpeed =  1.00f;
@@ -51,13 +49,13 @@ implements KeyListener {
     /** Calculates the camera's coordinate vectors. */
     protected void
     calcFSU() {
-        f = center.minus(eyeLoc);
+        f = Util.displacementVector(center, eyeLoc);
+        f = Util.normalize(f);
 
-        f.normalize();
-        upVec.normalize();
+        upVec = Util.normalize(upVec);
 
-        s = f.cross(upVec);
-        u = s.cross(f);
+        s = Util.cross(f, upVec);
+        u = Util.cross(s, f);
     }
 
     /** Sets up the default keybindings. */
@@ -80,22 +78,22 @@ implements KeyListener {
         binds.put("roll_right", KeyEvent.VK_O);
     }
 
-    /** Replaces gluLookAt and takes Vec3f instead of massive numbers of floats. */
+    /** Replaces gluLookAt and takes vectors instead of massive numbers of floats. */
     public void
     myLookAt(GL gl) {
         // Remember, this is transposed...
         float[] mat = {
-            s.x(), u.x(), -f.x(), 0,
-            s.y(), u.y(), -f.y(), 0,
-            s.z(), u.z(), -f.z(), 0,
-            0,     0,      0,     1
+            s[0], u[0], -f[0], 0,
+            s[1], u[1], -f[1], 0,
+            s[2], u[2], -f[2], 0,
+            0,    0,     0,    1
         };
 
         gl.glMultMatrixf(mat, 0);
         gl.glTranslatef(
-            -eyeLoc.x(),
-            -eyeLoc.y(),
-            -eyeLoc.z()
+            -eyeLoc[0],
+            -eyeLoc[1],
+            -eyeLoc[2]
         );
     }
 
@@ -135,63 +133,63 @@ implements KeyListener {
     actOnKey(int key) {
         if (key == binds.get("move_forward")) {
             float speed = +moveSpeed * timePassed;
-            eyeLoc.add(f.times(+speed));
+            eyeLoc = Util.add(eyeLoc, Util.times(speed, f));
         }
         else if (key == binds.get("move_backward")) {
             float speed = -moveSpeed * timePassed;
-            eyeLoc.add(f.times(speed));
+            eyeLoc = Util.add(eyeLoc, Util.times(speed, f));
         }
         else if (key == binds.get("move_left")) {
             float speed = -moveSpeed * timePassed;
-            eyeLoc.add(s.times(speed));
+            eyeLoc = Util.add(eyeLoc, Util.times(speed, s));
         }
         else if (key == binds.get("move_right")) {
             float speed = +moveSpeed * timePassed;
-            eyeLoc.add(s.times(speed));
+            eyeLoc = Util.add(eyeLoc, Util.times(speed, s));
         }
         else if (key == binds.get("move_up")) {
             float speed = +moveSpeed * timePassed;
-            eyeLoc.add(u.times(speed));
+            eyeLoc = Util.add(eyeLoc, Util.times(speed, u));
         }
         else if (key == binds.get("move_down")) {
-            float speed = +moveSpeed * timePassed;
-            eyeLoc.add(u.times(-speed));
+            float speed = -moveSpeed * timePassed;
+            eyeLoc = Util.add(eyeLoc, Util.times(speed, u));
         }
         else if (key == binds.get("turn_left")) {
             float speed = -turnSpeed * timePassed;
-            f.add(s.times(speed));
-            f.normalize();
-            s = f.cross(u);
+            f = Util.plus(f, Util.times(speed, s));
+            f = Util.normalize(f);
+            s = Util.cross(f, u);
         }
         else if (key == binds.get("turn_right")) {
             float speed = +turnSpeed * timePassed;
-            f.add(s.times(speed));
-            f.normalize();
-            s = f.cross(u);
+            f = Util.plus(f, Util.times(speed, s));
+            f = Util.normalize(f);
+            s = Util.cross(f, u);
         }
         else if (key == binds.get("turn_up")) {
             float speed = +tiltSpeed * timePassed;
-            f.add(u.times(speed));
-            f.normalize();
-            u = s.cross(f);
+            f = Util.plus(f, Util.times(speed, u));
+            f = Util.normalize(f);
+            u = Util.cross(s, f);
         }
         else if (key == binds.get("turn_down")) {
             float speed = -tiltSpeed * timePassed;
-            f.add(u.times(speed));
-            f.normalize();
-            u = s.cross(f);
+            f = Util.plus(f, Util.times(speed, u));
+            f = Util.normalize(f);
+            u = Util.cross(s, f);
         }
         else if (key == binds.get("roll_left")) {
             float speed = -turnSpeed * timePassed;
-            u.add(s.times(speed));
-            u.normalize();
-            s = f.cross(u);
+            u = Util.plus(u, Util.times(speed, s));
+            u = Util.normalize(u);
+            s = Util.cross(f, u);
         }
         else if (key == binds.get("roll_right")) {
             float speed = +turnSpeed * timePassed;
-            u.add(s.times(speed));
-            u.normalize();
-            s = f.cross(u);
+            u = Util.plus(u, Util.times(speed, s));
+            u = Util.normalize(u);
+            s = Util.cross(f, u);
         }
     }
 

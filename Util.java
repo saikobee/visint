@@ -24,12 +24,27 @@ public class Util {
 
     public static float[]
     cross(float[] a, float[] b) {
-        // 23-32, 31-13, 12-21
+        // 23-32, 31-13, 12-21 for 1-based indices
+        // 12-21, 20-02, 01-10 for 0-based indices
         return new float[] {
             a[1]*b[2] - a[2]*b[1],
             a[2]*b[0] - a[0]*b[2],
             a[0]*b[1] - a[1]*b[0]
         };
+    }
+
+    public static float[]
+    add(float[] p1, float[] p2) {
+        return new float[] {
+            p1[0] + p2[0],
+            p1[1] + p2[1],
+            p1[2] + p2[2]
+        };
+    }
+
+    public static float[]
+    plus(float[] a, float[] b) {
+        return add(a, b);
     }
 
     public static float
@@ -51,9 +66,19 @@ public class Util {
     }
 
     public static float[]
+    times(float k, float[] v) {
+        return scale(k, v);
+    }
+
+    public static float[]
     normalize(float[] v) {
         float m = magnitude(v);
         return scale(1f/m, v);
+    }
+
+    public static float[]
+    normalized(float[] v) {
+        return normalize(v);
     }
 
     public static float[]
