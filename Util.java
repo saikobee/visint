@@ -1,3 +1,4 @@
+import javax.media.opengl.*;
 import com.sun.opengl.util.*;
 import java.nio.*;
 
@@ -110,5 +111,15 @@ public class Util {
         int q = (d[1] > 0) ? 1 : 0;
 
         return (x + y + z + q) >= 2;
+    }
+
+    public static void
+    clearColor(GL gl, float[] color) {
+        gl.glClearColor(
+            color[0],
+            color[1],
+            color[2],
+            color[3]
+        );
     }
 }

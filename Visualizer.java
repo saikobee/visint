@@ -231,7 +231,7 @@ implements GLEventListener {
         fly.myLookAt(gl);
         mouseControls.rotate(gl);
 
-        gl.glClearColor(bgColor[0], bgColor[1], bgColor[2], bgColor[3]);
+        Util.clearColor(gl, bgColor);
 
         angle += d_angle;
         angle %= 360;
