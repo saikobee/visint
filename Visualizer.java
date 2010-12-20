@@ -49,8 +49,6 @@ implements GLEventListener {
     private Func  theFunc;
     private Cache theCache;
 
-    private ShaderSetup shaders;
-
     private Axes theAxes;
 
     public GLCanvas canvas;
@@ -61,19 +59,17 @@ implements GLEventListener {
     private Fly fly = new Fly();
 
     public
-    Visualizer(Func aFunc, String shaderName) {
+    Visualizer(Func aFunc) {
         setFunc(aFunc);
-        initShaderObject(shaderName);
     }
 
     public static void
-    launchWith(Func aFunc, String shaderName) {
+    launchWith(Func aFunc) {
         JFrame frame = new JFrame(theTitle);
         GLCanvas canvas = new GLCanvas();
 
-        final Visualizer inst = new Visualizer(aFunc, shaderName);
+        final Visualizer inst = new Visualizer(aFunc);
         inst.canvas = canvas;
-        //inst.initShaderObject(shaderName);
         //inst.setFunc(aFunc);
         canvas.addGLEventListener(inst);
 
@@ -160,15 +156,9 @@ implements GLEventListener {
 
         fly.initKeyBinds();
         changeLighting(gl);
-        shaders.setupShader(gl);
         fly.calcFSU();
         makeCache();
         makeAxes();
-    }
-
-    public void
-    initShaderObject(String shader) {
-        shaders = new ShaderSetup(shader);
     }
 
     public void
