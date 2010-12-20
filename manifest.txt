@@ -1,2 +1,2 @@
 Main-Class: GUI
-Class-Path: gluegen-rt.jar jogl.jar
+Class-Path: gluegen-rt.jar jogl.jar /usr/share/java/jogl/jogl.jar /usr/share/java/jogl/gluegen-rt.jar /usr/share/java/jogl.jar /usr/share/java/gluegen-rt.jar lib/jogl.jar lib/gluegen-rt.jar
