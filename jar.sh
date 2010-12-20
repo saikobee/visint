@@ -1,4 +1,6 @@
-rm *.jar
+#!/bin/bash
+
+[ -f visint.jar ] && rm visint.jar
 
 jar -cmf \
     manifest.txt \
