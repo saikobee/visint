@@ -2,5 +2,5 @@
 
 jar -cmf \
     manifest.txt \
-    "visint-1.0.jar" \
+    "visint-1.0-beta.jar" \
     *.class
