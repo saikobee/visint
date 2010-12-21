@@ -1,8 +1,6 @@
 #!/bin/bash
 
-[ -f visint.jar ] && rm visint.jar
-
 jar -cmf \
     manifest.txt \
-    visint.jar \
+    "visint-1.0.jar" \
     *.class
